@@ -62,4 +62,27 @@ class FornecedorController extends Controller
     {
         //
     }
+
+    // VALIDA OS COMPOS Obrigatorio
+    private function validatorInput($request,$params = false,$admin = false)
+    {
+    $validator = Validator::make($request->all(),[
+        'name'                  =>'required|max:100',
+        'id'                    =>$params?'required|integer':''
+        ]);
+
+        if($validator->fails()){
+        $msg= "Todos os campos são obrigatorio<br/>";
+        foreach($validator->errors()->all() as $error){
+            $msg = $msg." $error <br/>";
+        }
+        $response =  ['status'=>false,'messages'=>$msg];
+
+            session()->flash('status',$response);
+
+            return false;
+        }
+        return true;
+
+    }
 }
