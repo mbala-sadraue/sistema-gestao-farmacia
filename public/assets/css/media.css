@@ -1,0 +1,13 @@
+@media (max-width: 1199px){
+    .section_form {
+        padding: 20px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    #main,
+    #footer {
+        margin-left: 280px;
+    }
+}

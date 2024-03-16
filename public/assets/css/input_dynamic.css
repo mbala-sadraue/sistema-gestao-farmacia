@@ -1,0 +1,85 @@
+.input_dynamic {
+	width: 100%;
+	border: 1px solid #b9b9b9;
+	outline: none;
+	font-size: 12px;
+	padding: 4px;
+	padding-left: 8px;
+}
+
+.input_dynamic:focus {
+	border-color: #b9b9b9;
+	box-shadow: 0 0 0 0.04rem rgba(13, 110, 253, .25);
+	border-radius: 0px;
+}
+
+button.button_input_dynamic {
+	border: 1px solid #3e6845;
+	background: #3e6845;
+	color: #fff;
+}
+
+button.button_input_dynamic_update {
+	background: #f98300f0;
+	border: 1px solid #f98300f0;
+	color: #fff;
+}
+
+button.button_input_dynamic i {
+	font-size: 17px;
+	font-weight: 900;
+}
+
+table.table_input_dynamic thead tr {
+	height: 30px;
+}
+
+table.table_input_dynamic thead>tr>th {
+	padding-left: 0px;
+}
+
+table.table_input_dynamic tbody>tr>td {
+	font-size: 13px;
+	padding-left: 0px;
+}
+
+
+/*TEXTAREA DINAMICO*/
+.display-flex {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.textarea_dynimic {
+	min-height: 109px;
+	height: 109px;
+}
+
+
+/* SELECT DINAMICO*/
+.select_dynimic {
+
+	border-radius: unset;
+}
+
+
+.item-lista-definicao {
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, .3);
+	padding: 6px;
+	margin-bottom: 10px;
+}
+
+.item-lista-definicao h5 {
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.btn-accoes {
+	border: 0;
+	background: transparent;
+}
+
+.btn-accoes .bi-x-circle-fill {
+	color: #db2323;
+}

@@ -1,0 +1,84 @@
+/* Stylistic alternates for Inter */
+html,body{
+	min-height:100%;
+	font-feature-settings: "salt";
+}
+a{
+	color: rgba(99,102,241);
+}
+
+
+#content-left{
+	background-color: #1e293b;
+	min-height: 100vh;
+}
+#login-info{
+	position: relative;
+	top: 35%;
+}
+#login-info h1{
+	font-size: 3rem;
+	font-weight: 800;
+	color: #fff;
+}
+#login-info p{
+	color: rgb(148 163 184);
+}
+
+
+#content-right{
+	background-color: #fff;
+}
+#content-right-header-top{
+	text-align: right;
+}
+#box-title-right{
+	margin: 20px 0px;
+}
+#box-title-right h2{
+	font-size: 2rem;
+    font-weight: 800;
+    font-feature-settings: "salt";
+}
+#box-title-right h3{
+
+	font-size: 0.96rem;
+}
+#box-img-right{
+	text-align: center;
+}
+#box-img-right i{
+	margin-top:20px ;
+	font-size: 6rem;
+	text-align: center;
+}
+#form_main .form-control{
+	height: 50px;
+}
+#boxLembraMe{
+	font-size: 14px;
+	justify-content: space-between;
+}
+.form-check-input:checked {
+    background-color: var(--bg-button);
+    border-color:  var(--bg-button);
+    border-radius: none;
+}
+#btnLogin{
+	background: var(--bg-button);
+	padding: 10px;
+}
+.error-login{
+	--bs-alert-border-color: #db2323;
+}
+.error-login ul{
+	list-style: none;
+	margin-bottom: 0;
+}
+.error-login ul li{
+	font-size: 14px;
+	color: #cd313f;
+}
+#logo{
+	width: 200px !important;
+}

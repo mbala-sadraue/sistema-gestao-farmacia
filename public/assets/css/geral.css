@@ -1,0 +1,236 @@
+/***
+ *
+ * MY CSS
+ *
+ * */
+.pl-1{
+	padding-left: 1px;
+}
+.pr-1{
+	padding-right: 1px;
+}
+
+/*SIDEBAR */
+#box-prtfil{
+	margin: 20px 0px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+#box-img #sidebar-perfil-img{
+	width: 107px;
+	margin-bottom: 15px;
+}
+.sidebar-perfil-nome{
+	font-size: 15px;
+	font-weight: 700;
+	color: #fff;
+}
+.sidebar-perfil-email{
+	font-size: 13px;
+	color: #b3c4e5;
+}
+
+.nav-item-box{
+	margin-bottom: 7px !important;
+	margin-top: 10px;
+}
+.nav-item-header{
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    text-transform: uppercase;
+    margin-left: 15px !important;
+    display: block;
+    color: #899bbd;
+}
+.nav-item-p{
+	display: block;
+	margin-left: 15px !important;
+    font-size: 13px;
+    font-family: inherit;
+    color: #bdbdb8;
+}
+
+/* BUTTON SAVE AND RESET */
+#btn-save, #btn-reset{
+	font-size: 14px;
+	font-weight: 600;
+}
+#btn-save{
+	background-color: var(--bg-button);
+}
+
+#btn-save:hover{
+	background-color: #3229b9;
+}
+#btn-reset{
+	background-color: var(--secundario);
+}
+#btn-reset:hover{
+	background-color: #324768;
+}
+
+
+/*BUTTON DELETE AND CANCEL*/
+#btn-cancel, #btn-delete{
+	padding: 7px 22px;
+    font-size: 15px;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+#btn-cancel{
+	background-color: #fff;
+	border-color: rgb(203 213 225);
+	color: rgba(100,116,139);;
+}
+#btn-delete{
+	background-color: #d73131;
+	border-color: #d73131;
+}
+
+/*ALERT */
+#alert{
+	border:none;
+	border-radius: 0;
+	font-size: 15px;
+	margin: 0;
+}
+
+/*STATUS*/
+
+.Status-active{
+	color: green;
+}
+.Status-not-active{
+	color: #db9a23;
+}
+
+/**
+ *
+ * SECTION DETHALHES
+ *
+ *
+ * */
+.section_detalhes{
+	background: transparent;
+}
+.section_detalhes .card{
+	background: transparent;
+}
+#tab-option{
+	display: flex;
+	justify-content:space-between;
+}
+.nav-tabs .nav-link{
+	font-size: 15px;
+}
+#myTabContent{
+	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+.tableList {
+	border: 1px solid #dee2e6 !important;
+}
+.tableList  thead tr{
+	height: 56px;
+	align-items: center;
+	vertical-align: middle;
+}
+.tableList table thead tr th{
+	background: rgb(248 250 252);
+	font-size: 13px;
+}
+.tableList   th, .tableList   td{
+	padding-left: 20px;
+	color: #6c757d !important;
+}
+.tableDetalhe   th{
+	color: #6c757d !important;
+	font-size: 13px;
+}
+.tableDetalhe   td{
+	font-size: 14px;
+	color: #6c757d !important;
+}
+
+
+
+/**
+ *
+ * PAGINAÇÃO
+ *
+ *  */
+.box-pagination{
+	display: flex;
+	align-items: center;
+	padding: 10px 20px;
+}
+.pagination-per-page{
+	margin-left: 17px;
+}
+.pagination-per-page span{
+	font-size: 13px;
+	color: #64748b;
+	font-size: "Inter var", ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+.pagination-per-page .pagination-select{
+	display: inline;
+	border: 0.1rem solid #cfcfcf;
+    border-style: solid;
+    border-radius: 4px;
+    width: 77px;
+    padding: 3px;
+    font-size: 14px;
+    color: #6c757d;
+}
+.pagination-per-page .pagination-select:focus{
+	border: 0.1rem solid var(--bg-button);
+
+}
+.pagination-per-page .pagination-select option{
+
+
+}
+.box-pagination .pagination-length{
+	color: #64748b;
+	font-size: 12px;
+	margin:0 5px;
+	margin-left: 20px;
+
+}
+.box-pagination .pagination-length span{
+	margin-left: 4px;
+
+}
+.box-pagination .pagination-buttons button.butto-paginate{
+	border: none;
+	margin-left: 8px;
+	border-radius: 100%;
+	height: 40px;
+    width: 40px;
+    background-color: transparent;
+}
+.box-pagination .pagination-buttons button.butto-paginate:hover{
+    background-color: rgb(226 232 240 / 78%);
+}
+.box-pagination .pagination-buttons button.paginator-disabled:hover{
+	background-color: transparent !important;
+}
+
+
+.box-pagination .pagination-buttons button.butto-paginate i {
+	font-size: 23px;
+	fill: currentColor;
+	vertical-align: middle;
+	color: #94a3b8;
+	height: 25px;
+}
+
+
+/** PAGINA DETALHES**/
+.detail-subtitle {
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
