@@ -4,18 +4,20 @@
 
 
 <div id="seciont_main">
-	
-	<div class="container-fluid">	
+
+	<div class="container-fluid">
 
 		<div class="row">
-			
+
 			<div class="col-md-6" id="content-left">
-				<div class=" px-5" id="login-info">	
-					<h1>TS</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit. </p>
+				<div class=" px-5" id="login-info">
+					<h1>SGF</h1>
+					<p>SGF é uma singla para sistrema de gestão de farmácia criado do Tech S
+						Descubra a revolucionária solução de gestão de farmácia que simplifica todas as operações do seu
+						negócio. Com uma interface intuitiva e funcionalidades avançadas, nossa plataforma oferece
+						controle total do inventário, gestão eficiente de vendas e atendimento ao cliente. Além disso,
+						nossa tecnologia de análise de dados identifica oportunidades de crescimento. Experimente agora
+						e eleve sua farmácia ao próximo nível. </p>
 				</div>
 			</div>
 			<div class="col-md-6" id="content-right">
@@ -42,50 +44,52 @@
 
 					<div class="col-md-12 px-5">
 						@if($errors->any())
-							<div class="alert alert-danger error-login">
-								<ul>
-									@foreach($errors->all() as $error)
-										<li>{{ $error }} </li>
-									@endforeach
-								</ul>
-							</div>
+						<div class="alert alert-danger error-login">
+							<ul>
+								@foreach($errors->all() as $error)
+								<li>{{ $error }} </li>
+								@endforeach
+							</ul>
+						</div>
 						@endif
 						@if(session('danger'))
-							<div class="alert alert-danger error-login" >
-								<ul>
-									<li>{{ session('danger') }}</li>
-								</ul>
-							</div>
+						<div class="alert alert-danger error-login">
+							<ul>
+								<li>{{ session('danger') }}</li>
+							</ul>
+						</div>
 						@endif
-						<form action="{{route('login.sign-in')}}" method="post" class="needs-validation" novalidate id="form_main">
+						<form action="{{route('login.sign-in')}}" method="post" class="needs-validation" novalidate
+							id="form_main">
 							@csrf
 							<div class="mb-3">
 								<label for="email" class="form-label">E-mail <span class="required">*</span></label>
-								<input type="text" name="email" class="form-control" id="email"required >
-				                <div class="invalid-feedback">
-				                    E-mail é obrigatório.
-				                 </div>
+								<input type="text" name="email" class="form-control" id="email" required>
+								<div class="invalid-feedback">
+									E-mail é obrigatório.
+								</div>
 							</div>
 							<div class="mb-3">
-								<label for="password" class="form-label">Palavra-passe <span class="required">*</span></label>
+								<label for="password" class="form-label">Palavra-passe <span
+										class="required">*</span></label>
 								<input type="password" name="password" class="form-control" id="password" required>
-				                <div class="invalid-feedback">
-				                    E-mail é obrigatório.
-				                 </div>
+								<div class="invalid-feedback">
+									E-mail é obrigatório.
+								</div>
 							</div>
 
 							<div class="mb-3">
-								 <div class="d-flex" id="boxLembraMe">	
-								 	<div class="form-check">
-					                    <input class="form-check-input" type="checkbox" value="" id="lembra-me">
-					                    <label class="form-check-label" for="lembra-me">
-					                    Faz-me lembrar
-					                    </label>
-					                </div>
-				                 	 <div class="text-end">
-				                 	 	<a href="" class=" text-end">Esqueceu a palavra-passe?</a>
-				                 	 </div>
-								 </div>
+								<div class="d-flex" id="boxLembraMe">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="lembra-me">
+										<label class="form-check-label" for="lembra-me">
+											Faz-me lembrar
+										</label>
+									</div>
+									<div class="text-end">
+										<a href="" class=" text-end">Esqueceu a palavra-passe?</a>
+									</div>
+								</div>
 							</div>
 
 							<!------BUTTON SUBMIT------>
