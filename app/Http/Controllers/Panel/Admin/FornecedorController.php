@@ -13,38 +13,31 @@ class FornecedorController extends Controller
     public function index()
     {
         try{
-            $cursos = getDados('cursos');
+            $fornecedores = getDados('fornecedores');
             $sizePaginete = 5;
     
     
             if(request("size"))
             {
-            $sizePaginete = isCorretoSizePaginate(request("size"));
+                $sizePaginete = isCorretoSizePaginate(request("size"));
     
             }
     
             if(request('nome') && !isNullOrEmpty(request('nome')))
             {
-            $cursos = searchByField($cursos,"nome",request('nome'));
-            }
-    
-            if(request('ano_lectivos_id') && !isNullOrEmpty(request('ano_lectivos_id')))
-            {
-            $cursos = searchByField($cursos,"ano_lectivos_id",request('ano_lectivos_id',true));
+                $fornecedores = searchByField($fornecedores,"nome",request('nome'));
             }
     
     
-            $cursos  = $cursos->paginate($sizePaginete);
+            $fornecedores  = $fornecedores->paginate($sizePaginete);
     
-            if(getUserAuth()->hasRole('administrador')){
-                return view('painel.admin-master.cursos.all.index',compact('cursos'));
-            }
-    
-            return view('painel.pedagogicos.cursos.all.index',compact('cursos'));
+           
+            return view('painel.admin.fornecedores.all.index',compact('fornecedores'));
+            
     
         }catch(Exception $e)
         {
-            $this->tratarException($e);
+            return redirectError('admin/fornecedor',  $e->getMessage());
         }
     }
 
@@ -117,5 +110,12 @@ class FornecedorController extends Controller
         }
         return true;
 
+    }
+    
+    private function redirectError($route, $message){
+        $msg        = $message;
+        $response   =  ['status'=>false,'messages'=>"o correu um erro, contacte o administrador! ".$msg];
+        session()->flash('status',$response);
+        return redirect("$route");
     }
 }
