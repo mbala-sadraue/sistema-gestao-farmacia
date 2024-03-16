@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use App\Models\Admin\Forncedor;
 
 /**
  * Verifica se a varias esta vazio
@@ -77,3 +78,17 @@ function verify()
     else
         return false;
 }
+
+function getDados($oque)
+ {
+   $result_query = [];
+   switch($oque){
+       case 'fornecedores':
+         $result_query  = Forncedor::orderBy('nome','asc')->
+                           where('status','1')->get();
+       break;
+       
+   }
+
+   return $result_query;
+ }

@@ -12,7 +12,40 @@ class FornecedorController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $cursos = getDados('cursos');
+            $sizePaginete = 5;
+    
+    
+            if(request("size"))
+            {
+            $sizePaginete = isCorretoSizePaginate(request("size"));
+    
+            }
+    
+            if(request('nome') && !isNullOrEmpty(request('nome')))
+            {
+            $cursos = searchByField($cursos,"nome",request('nome'));
+            }
+    
+            if(request('ano_lectivos_id') && !isNullOrEmpty(request('ano_lectivos_id')))
+            {
+            $cursos = searchByField($cursos,"ano_lectivos_id",request('ano_lectivos_id',true));
+            }
+    
+    
+            $cursos  = $cursos->paginate($sizePaginete);
+    
+            if(getUserAuth()->hasRole('administrador')){
+                return view('painel.admin-master.cursos.all.index',compact('cursos'));
+            }
+    
+            return view('painel.pedagogicos.cursos.all.index',compact('cursos'));
+    
+        }catch(Exception $e)
+        {
+            $this->tratarException($e);
+        }
     }
 
     /**
