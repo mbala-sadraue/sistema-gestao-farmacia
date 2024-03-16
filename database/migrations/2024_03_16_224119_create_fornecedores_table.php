@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('fornecedores', function (Blueprint $table) {
             $table->id();
+            $table->string("nome");
+            $table->string("representante");
+            $table->string("nif");
+            $table->string("telefone");
+            $table->string("email");
+            $table->string("endereco");
+            $table->enum("status",['0','1'])->default('1');
             $table->timestamps();
         });
     }
