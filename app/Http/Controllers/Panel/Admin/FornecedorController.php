@@ -27,7 +27,7 @@ class FornecedorController extends Controller
             {
                 $fornecedores = searchByField($fornecedores,"nome",request('nome'));
             }
-            
+
             $fornecedores  = $fornecedores->paginate($sizePaginete);
     
             return view('painel.admin.fornecedores.all.index',compact('fornecedores'));
@@ -44,7 +44,14 @@ class FornecedorController extends Controller
      */
     public function create()
     {
-        //
+        try {
+
+           $typeForm = 'create';
+            return view('panel.admin.fornecedores.form.form',compact('typeForm'));
+
+        } catch (Exception $th) {
+            return redirectError('admin/fornecedor',  $e->getMessage());
+        }
     }
 
     /**
