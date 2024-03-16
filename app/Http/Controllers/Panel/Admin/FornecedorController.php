@@ -27,11 +27,9 @@ class FornecedorController extends Controller
             {
                 $fornecedores = searchByField($fornecedores,"nome",request('nome'));
             }
-    
-    
+            
             $fornecedores  = $fornecedores->paginate($sizePaginete);
     
-           
             return view('painel.admin.fornecedores.all.index',compact('fornecedores'));
             
     
