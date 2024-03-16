@@ -1,7 +1,7 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "O projecto básico.",
+    "description": "Sistema de grstão de farmácia.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {

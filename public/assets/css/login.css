@@ -82,3 +82,7 @@ a{
 #logo{
 	width: 200px !important;
 }
+
+#login-info p{
+	text-align: justify;
+}
