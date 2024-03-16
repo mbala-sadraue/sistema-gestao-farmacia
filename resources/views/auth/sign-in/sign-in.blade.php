@@ -12,7 +12,7 @@
 			<div class="col-md-6" id="content-left">
 				<div class=" px-5" id="login-info">
 					<h1>SGF</h1>
-					<p>SGF é uma singla para sistrema de gestão de farmácia criado do Tech S
+					<p>SGF é uma singla para sistema de gestão de farmácia.
 						Descubra a revolucionária solução de gestão de farmácia que simplifica todas as operações do seu
 						negócio. Com uma interface intuitiva e funcionalidades avançadas, nossa plataforma oferece
 						controle total do inventário, gestão eficiente de vendas e atendimento ao cliente. Além disso,
@@ -23,7 +23,7 @@
 			<div class="col-md-6" id="content-right">
 				<div id="">
 					<div class="col-md-12 p-3" id="content-right-header-top">
-						<a href="">Tech Solutions</a>
+						<a href="">SGF</a>
 					</div>
 					<!-----TITLE----->
 					<div class="col-md-12 px-5">
@@ -35,7 +35,7 @@
 					<!-----TITLE----->
 					<div class="col-md-12 px-5">
 						<div class="" id="box-title-right">
-							<h2>Tech Solutions</h2>
+							<h2>Sistema de Farmácia</h2>
 							<h3>Lorem ipsum dolor sit amet <a href="">create a acount</a></h3>
 						</div>
 					</div>
