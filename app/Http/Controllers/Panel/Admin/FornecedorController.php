@@ -117,7 +117,22 @@ class FornecedorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        try{
+            $fornecedor     = $this->fornecedor->find($id);
+
+             if(!isset($fornecedor->id) || $fornecedor == null)
+             {
+               $response =  ['status'=>false,'messages'=>"fornecedor não encontrado."];
+               session()->flash('status',$response);
+               return redirect()->back();;
+             }
+      
+             $typeForm = "edit";
+            return view('painel.admin.fornecedores.form.form',compact("typeForm",'fornecedor','departamentos'));
+          }catch(Exception $e)
+          {
+            $this->tratarException($e);
+          }
     }
 
     /**
