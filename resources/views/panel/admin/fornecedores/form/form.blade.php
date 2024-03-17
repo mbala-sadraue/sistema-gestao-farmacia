@@ -62,8 +62,8 @@
               </div>
               <div class="col-md-6 pl-1">
                 <label for="validaterepresentante" class="form-label">representante</label>
-                <input type="text" name="representante" class="form-control" id="validaterepresentante" value="{{ old('nome')}}"
-                  title="Digite o Representante" required>
+                <input type="text" name="representante" class="form-control" id="validaterepresentante"
+                  value="{{ old('nome')}}" title="Digite o Representante" required>
                 <div class="invalid-feedback">
                   Representante é obrigatório!
                 </div>
@@ -114,52 +114,80 @@
           </div>
         </form><!-- Vertical Form -->
         @endif
-
+        <!-- Vertical Form -->
         @if(isset($typeForm) && $typeForm == "edit")
-
         <div class="card-header">
           <h6>Editar Fornecedor</h6>
-          <p class="card-header-p">Formulário para edição do Fornecedor</p>
+          <p class="card-header-p">Formulário para editar fornecedor</p>
         </div>
-        <!-- Vertical Form -->
-        <form class=" g-3 needs-validation" novalidate method="post" action="/pedagogico/Fornecedor/{{$Fornecedor->id}}">
-          @csrf
+        <form class=" g-3 needs-validation" novalidate method="post" action="/admin/fornecedor/$fornecedor->id">
           @method('PUT')
+          @csrf
           <div class="card-body">
-            <div class=" col-md-12">
-              <label for="validationCustom04" class="form-label">Departamento</label>
-              <select class="form-select" id="validationCustom04" name="departamentos_id" required>
-                @if(isset($departamentos) && count($departamentos) > 0)
-
-                @foreach($departamentos as $departamento)
-                <option value="{{ $departamento->id }}" {{ ( $departamento->id ==
-                  $Fornecedor->departamentos_id)?'selected':'' }}> {{ $departamento->nome }} </option>
-                @endforeach
-                @endif
-              </select>
-            </div>
-            <div class="col-md-12">
-              <label for="validationCustom01" class="form-label">Nome</label>
-              <input type="text" name="nome" class="form-control" id="validationCustom01" value="{{$Fornecedor->nome}}"
-                required>
-              <div class="valid-feedback">
-                Esta bom!
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <label for="validateNome" class="form-label">Nome</label>
+                <input type="text" name="name" class="form-control" id="validateNome"  value="{{ $fornecedor->name }}"
+                  title="Digite o Nome" required>
+                <div class="invalid-feedback">
+                  Nome é obrigatório!
+                </div>
+              </div>
+              <div class="col-md-6 pl-1">
+                <label for="validaterepresentante" class="form-label">Resentante</label>
+                <input type="text" name="representante" class="form-control" id="validaterepresentante"
+                value="{{ $fornecedor->representante }}" title="Digite o Representante" required>
+                <div class="invalid-feedback">
+                  Representante é obrigatório!
+                </div>
               </div>
             </div>
-            <div class="form-check form-switch mt-3">
-              <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckChecked" {{
-                $Fornecedor->status?"checked":""}}>
-              <label class="form-check-label" for="flexSwitchCheckChecked">status</label>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <label for="validateNif" class="form-label">Nif</label>
+                <input type="text" name="nif" class="form-control" id="validateNif"
+                value="{{ $fornecedor->nif }}"  title="Digite o Nif" required>
+                <div class="invalid-feedback">
+                  Nif é obrigatório!
+                </div>
+              </div>
+              <div class="col-md-6 pl-1">
+                <label for="validateTelefone" class="form-label">Telefone</label>
+                <input type="text" name="telefone" class="form-control" id="validateTelefone"
+                value="{{ $fornecedor->telefone }}" title="Digite o Telefone" required>
+                <div class="invalid-feedback">
+                  Telefone é obrigatório!
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <label for="validateEmail" class="form-label">E-mail</label>
+                <input type="text" name="email" class="form-control" id="validateEmail"
+                value="{{ $fornecedor->email }} "title="Digite o E-mail" required>
+                <div class="invalid-feedback">
+                  E-mail é obrigatório!
+                </div>
+              </div>
+              <div class="col-md-6 pl-1">
+                <label for="validateEndereco" class="form-label">Endereço</label>
+                <input type="text" name="endereco" class="form-control" id="validateEndereco"
+                  value="{{ $fornecedor->endereco }}" title="Digite o Endereço" required>
+                <div class="invalid-feedback">
+                  Endereço é obrigatório!
+                </div>
+              </div>
             </div>
           </div>
           <div class="card-footer">
             <div class="col-12">
-              <button type="reset" class="btn btn-secondary" id="btn-reset">Resetar</button>
-              <button type="submit" class="btn btn-primary" id="btn-save">actualizar</button>
+              <button type="reset" class="btn btn-secondary" id="btn-reset">Limpar</button>
+              <button type="submit" class="btn btn-primary" id="btn-save">salvar</button>
             </div>
           </div>
-          <input type="hidden" name="id" class="form-control" id="id" value="{{$Fornecedor->id}}" required>
+          <input type="hidden" name="id"  value="{{ $fornecedor->id }}">
         </form><!-- Vertical Form -->
+
         @endif
       </div>
     </div>

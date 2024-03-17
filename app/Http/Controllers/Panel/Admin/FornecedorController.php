@@ -23,7 +23,7 @@ class FornecedorController extends Controller
     public function index()
     {
         try{
-            $fornecedores = getDados('fornecedores');
+            $fornecedores = Forncedor::orderBy('name','asc');
             $sizePaginete = 5;
     
     
@@ -129,10 +129,10 @@ class FornecedorController extends Controller
              }
       
              $typeForm = "edit";
-            return view('panel.admin.fornecedores.form.form',compact("typeForm",'fornecedor','departamentos'));
+            return view('panel.admin.fornecedores.form.form',compact("typeForm",'fornecedor'));
           }catch(Exception $e)
           {
-            $this->tratarException($e);
+            return redirectError('/admin/fornecedor',  $e->getMessage());
           }
     }
 
@@ -142,6 +142,7 @@ class FornecedorController extends Controller
     public function update(Request $request, string $id)
     {
         try{
+            // dd($request);
       
             $status = '1';
 
@@ -163,8 +164,6 @@ class FornecedorController extends Controller
                 $status = "0";
              }
 
-            $fornecedor  = fornecedor;
-
             $data    = $fornecedor->update([
                 'nif'           => $request->nif,
                 'name'          =>  $request->name,
@@ -177,14 +176,14 @@ class FornecedorController extends Controller
 
             if($data)
             {
-                $response =  ['status'=>true,'messages'=>"fornecedor <b>$data->name</b> actualizado com sucesso","data"=>$data];
+                $response =  ['status'=>true,'messages'=>"fornecedor <b>$request->name</b> actualizado com sucesso","data"=>$data];
             }else
             {
-                $response =  ['status'=>true,'messages'=>"Erro ao actualizar o fornecedor "];
+                $response =  ['status'=>false,'messages'=>"Erro ao actualizar o fornecedor "];
             }
     
             session()->flash('status',$response);
-            return redirect("/admin/fornecedor")->back();
+            return redirect("/admin/fornecedor");
         }catch(Exception $e){
             return redirectError('/admin/fornecedor',  $e->getMessage());
         }
