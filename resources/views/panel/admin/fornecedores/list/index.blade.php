@@ -15,7 +15,7 @@
 
         </div>
         <div id="box-button">
-            <a href="/admin/user/create">
+            <a href="/admin/fornecedor/create">
                 <button type="button" class="btn btn-primary" id="btn-add">
                     <i class="bi bi-plus-lg me-1"></i>adicionar
                 </button>
@@ -47,26 +47,26 @@
                         <tr>
                             <th scope="col">Nome</th>
                             <th scope="col">Representante</th>
+                            <th scope="col">Nif</th>
                             <th scope="col">Telefone</th>
-                            <th scope="col">Endereço</th>
                             <th scope="col">E-mail</th>
+                            <th scope="col">Endereço</th>
                             <th scope="col">Status</th>
                             <th scope="col"> Acções</th>
                         </tr>
                     </thead>
-                    @if (isset($users) && $users != null)
+                    @if (isset($fornecedores) && $fornecedores != null)
                         <tbody>
-                            @foreach ($users as $user)
+                            @foreach ($fornecedores as $fornecedor)
                                 <tr>
+                                    <td>{{ $fornecedor->name }}</td>
+                                    <td>{{ $fornecedor->representante }}</td>
+                                    <td>{{ $fornecedor->nif }}</td>
+                                    <td>{{ $fornecedor->telefone }}</td>
+                                    <td>{{ $fornecedor->email }}</td>
+                                    <td>{{ $fornecedor->endereco }}</td>
                                     <td>
-                                        <div id="td-box-img">
-                                            <img src="{{ asset($user->avatar)  }}" class="img-fluid">
-                                        </div>
-                                    </td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>
-                                        @if( $user->status )
+                                        @if( $fornecedor->status )
                                         <i class="bi bi-circle-fill Status-active"></i>
                                         @else
                                         <i class="bi bi-circle-fill Status-not-active"></i>
@@ -74,13 +74,13 @@
 
                                     </td>
                                     <td class="">
-                                        <a href="/admin/user/detail/{{ $user->id }}"><button
+                                        <a href="/admin/fornecedor/detail/{{ $fornecedor->id }}"><button
                                                 class="btn-accoes"><i class="ri-eye-fill"></i></button></a>
-                                        <a href="/admin/user/{{ $user->id }}/edit">
+                                        <a href="/admin/fornecedor/{{ $fornecedor->id }}/edit">
                                             <button class="btn-accoes"><i class="ri-edit-box-line"></i></button></a>
                                         <button class="btn-accoes BtnDeleteTrue" data-bs-toggle="modal"
-                                            data-bs-target="#verticalycentered" value="{{ $user->id }}"
-                                            data-dt-url="/admin/user/" data-dt-titte="user">
+                                            data-bs-target="#verticalycentered" value="{{ $fornecedor->id }}"
+                                            data-dt-url="/admin/fornecedor/" data-dt-titte="fornecedor">
                                             <i class="bi bi-x-circle-fill"></i>
                                         </button>
                                     </td>
@@ -89,7 +89,7 @@
                         </tbody>
                     @endif
                 </table>
-                {{$users->links("vendor.pagination.my-pagination")}}
+                {{$fornecedores->links("vendor.pagination.my-pagination")}}
             </div>
         </div>
     </section>
