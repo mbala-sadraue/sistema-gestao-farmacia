@@ -17,14 +17,14 @@
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-        <li class="breadcrumb-item "><a href="/admin/user">Usuário</a></li>
+        <li class="breadcrumb-item "><a href="/admin/fornecedor">Usuário</a></li>
         <li class="breadcrumb-item active">Adicionar</li>
       </ol>
     </nav>
 
   </div>
   <div id="box-button">
-    <a href="/admin/user">
+    <a href="/admin/fornecedor">
       <button type="button" class="btn btn-primary" id="btn-add"><i class="bi bi-eye me-1"></i>Usuários</button>
     </a>
   </div>
@@ -38,7 +38,7 @@
         <h3 class="heading">Adicionar o Usuário</h3>
         <p>Preencha todos os campos do formulário, para ir para próxima etapa. </p>
       </div>
-      <form class="form-register" action="/admin/user" method="post">
+      <form class="form-register" action="/admin/fornecedor" method="post">
         @csrf
         <div id="form-total">
           <!-- SECTION 1 -->
@@ -165,7 +165,7 @@
       <h3 class="heading">Adicionar o Usuário</h3>
       <p>Preencha todos os campos do formulário, para ir para próxima etapa. </p>
     </div>
-    <form class="form-register" action="/admin/user/{{$user->id}}" method="post">
+    <form class="form-register" action="/admin/fornecedor/{{$fornecedor->id}}" method="post">
       @method('PUT')
       @csrf
       <div id="form-total">
@@ -184,7 +184,7 @@
             <div class="row">
               <div class="col-md-12 pr-1">
                 <label class="form-label" for="nome">Nome<span class="required">*</span></label>
-                <input type="text" name="nome" value="{{ $user->name}}" id="nome" class="form-control" required>
+                <input type="text" name="nome" value="{{ $fornecedor->name}}" id="nome" class="form-control" required>
               </div>
             </div>
             <div class="row mt-3">
@@ -203,7 +203,7 @@
               <div>
                 <div class="form-check form-switch mt-3">
                   <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckChecked" {{
-                    $user->status?"checked":""}}>
+                    $fornecedor->status?"checked":""}}>
                   <label class="form-check-label" for="flexSwitchCheckChecked">status</label>
                 </div>
               </div>
@@ -223,12 +223,12 @@
             <div class="row ">
               <div class="col-md-6 pr-1">
                 <label class="form-label" for="telefone">Telefone <span class="required">*</span></label>
-                <input type="text" name="telefone" value="{{ $user->telefone}}" id="telefone" class="form-control"
+                <input type="text" name="telefone" value="{{ $fornecedor->telefone}}" id="telefone" class="form-control"
                   required>
               </div>
               <div class="col-md-6 pl-1">
                 <label class="form-label" for="email">E-mail<span class="required">*</span></label>
-                <input type="text" name="email" value="{{ $user->email}}" id="email" class="form-control" required />
+                <input type="text" name="email" value="{{ $fornecedor->email}}" id="email" class="form-control" required />
               </div>
             </div>
           </div>
@@ -283,7 +283,7 @@
           </div>
         </section>
       </div>
-      <input type="hidden" value="{{ $user->id}}" name="id" />
+      <input type="hidden" value="{{ $fornecedor->id}}" name="id" />
     </form>
   </div>
   @endif

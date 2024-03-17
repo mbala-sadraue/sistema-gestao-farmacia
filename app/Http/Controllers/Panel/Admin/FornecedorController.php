@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Panel\Admin;
 
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Forncedor;
@@ -71,8 +72,8 @@ class FornecedorController extends Controller
         try{
       
             $status = '1';
-      
-               if(!$validatorInput){
+            $ipuntValidatorInput = $this->validatorInput($request,false);
+               if(!$ipuntValidatorInput){
                 return redirect()->back();
                }
                
@@ -144,7 +145,8 @@ class FornecedorController extends Controller
       
             $status = '1';
 
-            if(!$validatorInput){
+            $ipuntValidatorInput = $this->validatorInput($request,false);
+            if(!$ipuntValidatorInput){
             return redirect()->back();
             }
 
