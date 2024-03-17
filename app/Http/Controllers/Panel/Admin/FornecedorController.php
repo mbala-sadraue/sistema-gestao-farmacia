@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Panel\Admin;
 
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Forncedor;
@@ -22,7 +23,7 @@ class FornecedorController extends Controller
     public function index()
     {
         try{
-            $fornecedores = getDados('fornecedores');
+            $fornecedores = Forncedor::orderBy('name','asc');
             $sizePaginete = 5;
     
     
@@ -32,14 +33,14 @@ class FornecedorController extends Controller
     
             }
     
-            if(request('nome') && !isNullOrEmpty(request('nome')))
+            if(request('name') && !isNullOrEmpty(request('name')))
             {
-                $fornecedores = searchByField($fornecedores,"nome",request('nome'));
+                $fornecedores = searchByField($fornecedores,"name",request('name'));
             }
 
             $fornecedores  = $fornecedores->paginate($sizePaginete);
     
-            return view('painel.admin.fornecedores.all.index',compact('fornecedores'));
+            return view('panel.admin.fornecedores.list.index',compact('fornecedores'));
             
     
         }catch(Exception $e)
@@ -71,8 +72,8 @@ class FornecedorController extends Controller
         try{
       
             $status = '1';
-      
-               if(!$validatorInput){
+            $ipuntValidatorInput = $this->validatorInput($request,false);
+               if(!$ipuntValidatorInput){
                 return redirect()->back();
                }
                
@@ -80,7 +81,7 @@ class FornecedorController extends Controller
 
                $data    = $fornecedor->create([
                     'nif'           => $request->nif,
-                    'nome'          =>  $request->nome,
+                    'name'          =>  $request->name,
                     'email'         =>  $request->email,
                     'status'        =>  $status,
                     'telefone'      =>  $request->telefone,
@@ -90,14 +91,14 @@ class FornecedorController extends Controller
 
                if($data)
                {
-                  $response =  ['status'=>true,'messages'=>"fornecedor <b>$data->nome</b> cadastrado com sucesso","data"=>$data];
+                  $response =  ['status'=>true,'messages'=>"fornecedor <b>$data->name</b> cadastrado com sucesso","data"=>$data];
                }else
                {
                   $response =  ['status'=>true,'messages'=>"Erro ao cadastrar o fornecedor "];
                }
       
                session()->flash('status',$response);
-               return redirect()->back();
+               return redirect("admin/fornecedor");
           }catch(Exception $e)
           {
             return redirectError('admin/fornecedor',  $e->getMessage());
@@ -128,10 +129,10 @@ class FornecedorController extends Controller
              }
       
              $typeForm = "edit";
-            return view('painel.admin.fornecedores.form.form',compact("typeForm",'fornecedor','departamentos'));
+            return view('panel.admin.fornecedores.form.form',compact("typeForm",'fornecedor'));
           }catch(Exception $e)
           {
-            $this->tratarException($e);
+            return redirectError('/admin/fornecedor',  $e->getMessage());
           }
     }
 
@@ -141,10 +142,12 @@ class FornecedorController extends Controller
     public function update(Request $request, string $id)
     {
         try{
+            // dd($request);
       
             $status = '1';
 
-            if(!$validatorInput){
+            $ipuntValidatorInput = $this->validatorInput($request,false);
+            if(!$ipuntValidatorInput){
             return redirect()->back();
             }
 
@@ -161,11 +164,9 @@ class FornecedorController extends Controller
                 $status = "0";
              }
 
-            $fornecedor  = fornecedor;
-
             $data    = $fornecedor->update([
                 'nif'           => $request->nif,
-                'nome'          =>  $request->nome,
+                'name'          =>  $request->name,
                 'email'         =>  $request->email,
                 'status'        =>  $status,
                 'telefone'      =>  $request->telefone,
@@ -175,16 +176,16 @@ class FornecedorController extends Controller
 
             if($data)
             {
-                $response =  ['status'=>true,'messages'=>"fornecedor <b>$data->nome</b> actualizado com sucesso","data"=>$data];
+                $response =  ['status'=>true,'messages'=>"fornecedor <b>$request->name</b> actualizado com sucesso","data"=>$data];
             }else
             {
-                $response =  ['status'=>true,'messages'=>"Erro ao actualizar o fornecedor "];
+                $response =  ['status'=>false,'messages'=>"Erro ao actualizar o fornecedor "];
             }
     
             session()->flash('status',$response);
-            return redirect()->back();
+            return redirect("/admin/fornecedor");
         }catch(Exception $e){
-            return redirectError('admin/fornecedor',  $e->getMessage());
+            return redirectError('/admin/fornecedor',  $e->getMessage());
         }
     }
 
