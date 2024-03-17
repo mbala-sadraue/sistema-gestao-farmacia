@@ -4,9 +4,18 @@ namespace App\Http\Controllers\Panel\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Admin\Forncedor;
 
 class FornecedorController extends Controller
 {
+
+
+    var $fornecedor = null; 
+
+    public function __construct(Forncedor $fornecedor){
+        
+        $this->fornecedor = $fornecedor;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -59,7 +68,40 @@ class FornecedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+      
+            $status = '1';
+      
+               if(!$validatorInput){
+                return redirect()->back();
+               }
+               
+               $fornecedor  = $this->fornecedor;
+
+               $data    = $fornecedor->create([
+                    'nif'           => $request->nif,
+                    'nome'          =>               $request->nome,
+                    'email'         =>$request->email,
+                    'status'        => $status,
+                    'telefone'      => $request->telefone,
+                    'endereco'      =>$request->endereco,
+                    'representante' => $representante
+               ]);
+               
+               if($data)
+               {
+                  $response =  ['status'=>true,'messages'=>"fornecedor <b>$data->nome</b> cadastrado com sucesso","data"=>$data];
+               }else
+               {
+                  $response =  ['status'=>true,'messages'=>"Erro ao cadastrar o fornecedor "];
+               }
+      
+               session()->flash('status',$response);
+               return redirect()->back();
+          }catch(Exception $e)
+          {
+            return redirectError('admin/fornecedor',  $e->getMessage());
+          }
     }
 
     /**
