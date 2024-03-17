@@ -8,16 +8,16 @@
 <link rel="stylesheet" href="{{asset('assets/form-steps/css/form-steps.css')}}" />
 @endpush
 
-@section('headTitle','cadastar-Usuário')
+@section('headTitle','cadastar-Fornecedor')
 <!----CONTENT------>
 @section('content-admin')
 <div class="pagetitle">
   <div>
-    <h1>Usuário</h1>
+    <h1>Fornecedores</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-        <li class="breadcrumb-item "><a href="/admin/fornecedor">Usuário</a></li>
+        <li class="breadcrumb-item "><a href="/admin/fornecedor">Fornecedor</a></li>
         <li class="breadcrumb-item active">Adicionar</li>
       </ol>
     </nav>
@@ -25,270 +25,96 @@
   </div>
   <div id="box-button">
     <a href="/admin/fornecedor">
-      <button type="button" class="btn btn-primary" id="btn-add"><i class="bi bi-eye me-1"></i>Usuários</button>
+      <button type="button" class="btn btn-primary" id="btn-add"><i class="bi bi-eye me-1"></i>Fornecedores</button>
     </a>
   </div>
 </div><!-- End Page Title -->
 
 <div class="page-content">
-  <div class="wizard-v3-content">
-    <div class="wizard-form">
-      @if(isset($typeForm) && $typeForm == "create")
-      <div class="wizard-header">
-        <h3 class="heading">Adicionar o Usuário</h3>
-        <p>Preencha todos os campos do formulário, para ir para próxima etapa. </p>
-      </div>
-      <form class="form-register" action="/admin/fornecedor" method="post">
-        @csrf
-        <div id="form-total">
-          <!-- SECTION 1 -->
-          <h2>
-            <span class="step-icon"><i class="zmdi zmdi-account"></i></span>
-            <span class="step-text">Perfil</span>
-          </h2>
-          <section>
-            <div>
 
-            </div>
-            <div class="inner">
-              <h3>Dados Pessoais</h3>
+</div>
 
-              <div class="row">
-                <div class="col-md-12 pr-1">
-                  <label class="form-label" for="nome">Nome<span class="required">*</span></label>
-                  <input type="text" name="nome" id="nome" class="form-control" required>
+<section class="section dashboard section_form" id="secionMain">
+     <div class="row"> 
+        <div class="col-md-6 offset-md-3"  id="card_form">
+            <div class="card">
+              <div> 
+                @include('templates.painel.componentes.alert.alert')
+              </div>
+              @if(isset($typeForm) && $typeForm == "create")
+            
+                <div class="card-header">
+                  <h6>Cadastrar Curso</h6>
+                  <p class="card-header-p">Formulário para cadastrar curso</p>
                 </div>
-              </div>
-              <div class="row mt-3">
-                <div class="col-md-12 pr-1">
-                  <label class="form-label" for="cargos">Cargo<span class="required">*</span></label>
-                  <select class="form-select" id="cargos" name="cargo" required>
-                    <option selected disabled value="">Selecione Cargo</option>
-                    @if(isset($cargos) && count($cargos) > 0)
+                <!-- Vertical Form -->
+                <form class=" g-3 needs-validation" novalidate method="post" action="/pedagogico/curso">
+                  @csrf
+                  <div class="card-body">
+                    <div class="col-md-12">
+                      <label for="validationCustom01" class="form-label">Nome</label>
+                      <input type="text" name="nome" class="form-control" id="validationCustom01" value="{{ old('nome')}}" title="Digite o Nome"required>
+                      <div class="valid-feedback">
+                        Esta bom!
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <div class="col-12">
+                        <button type="reset" class="btn btn-secondary" id="btn-reset">Limpar</button>
+                        <button type="submit" class="btn btn-primary" id="btn-save">salvar</button>
+                      </div>
+                  </div>
+                 </form><!-- Vertical Form -->
+              @endif
 
-                    @foreach($cargos as $cargo)
-                    <option value="{{ $cargo->id }}"> {{ $cargo->name }} </option>
-                    @endforeach
-                    @endif
-                  </select>
+               @if(isset($typeForm) && $typeForm == "edit")
+            
+                <div class="card-header">
+                  <h6>Editar Curso</h6>
+                  <p class="card-header-p">Formulário para edição do Curso</p>
                 </div>
-              </div>
-          </section>
+                <!-- Vertical Form -->
+                <form class=" g-3 needs-validation" novalidate method="post" action="/pedagogico/curso/{{$curso->id}}">
+                  @csrf
+                  @method('PUT')
+                  <div class="card-body">
+                    <div class=" col-md-12">
+                      <label for="validationCustom04" class="form-label">Departamento</label>
+                      <select class="form-select" id="validationCustom04" name="departamentos_id" required >
+                        @if(isset($departamentos) && count($departamentos) > 0)
 
-          <!-- SECTION 2 -->
-          <h2>
-            <span class="step-icon"><i class="zmdi zmdi-phone"></i></span>
-            <span class="step-text">Contactos</span>
-          </h2>
-
-          <section>
-            <div class="inner">
-              <h3>Contactos:</h3>
-              <div class="row ">
-                <div class="col-md-6 pr-1">
-                  <label class="form-label" for="telefone">Telefone <span class="required">*</span></label>
-                  <input type="text" name="telefone" id="telefone" class="form-control" required>
-                </div>
-                <div class="col-md-6 pl-1">
-                  <label class="form-label" for="email">E-mail<span class="required">*</span></label>
-                  <input type="text" name="email" id="email" class="form-control" required />
-                </div>
-              </div>
-            </div>
-          </section>
-          <!-- SECTION 3 -->
-          <h2>
-            <span class="step-icon"><i class="zmdi zmdi-lock"></i></span>
-            <span class="step-text">Credenciais</span>
-          </h2>
-          <section>
-            <div class="inner">
-              <h3>Credenciais:</h3>
-            </div>
-
-            <div class="row mt-3">
-              <div class="col-md-6 pr-1">
-                <label class="form-label" for="password">Senha <span class="required">*</span></label>
-                <input type="text" name="password" id="password" class="form-control" required>
-              </div>
-              <div class="col-md-6 pl-1">
-                <label class="form-label" for="obs">Conforma a Senha<span class="required">*</span></label>
-                <input type="text" name="obs" id="passwordConfirm" class="form-control" required />
-              </div>
-            </div>
-          </section>
-          <!-- SECTION 4 -->
-          <h2>
-            <span class="step-icon"><i class="zmdi zmdi-receipt"></i></span>
-            <span class="step-text">Confirmar</span>
-          </h2>
-          <section>
-            <div class="inner">
-              <h3>Confirmar Detalhes:</h3>
-              <div class="form-row table-responsive">
-                <table class="table">
-                  <tbody>
-                    <tr class="space-row">
-                      <th>Nome:</th>
-                      <td id="nome-detail"></td>
-                    </tr>
-                    <tr class="space-row">
-                      <th>Sexo:</th>
-                      <td id="sexo-detail"></td>
-                    </tr>
-                    <tr class="space-row">
-                      <th>Estado Civil:</th>
-                      <td id="estado_civil-detail"></td>
-                    </tr>
-                    <tr class="space-row">
-                      <th>Telefone:</th>
-                      <td id="telefone-detail"></td>
-                    </tr>
-                    <tr class="space-row">
-                      <th>E-mail:</th>
-                      <td id="email-detail"></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
+                          @foreach($departamentos as $departamento)
+                            <option value="{{ $departamento->id }}" {{ ( $departamento->id == $curso->departamentos_id)?'selected':'' }}> {{ $departamento->nome }} </option>
+                          @endforeach
+                        @endif
+                      </select>
+                    </div>
+                    <div class="col-md-12">
+                      <label for="validationCustom01" class="form-label">Nome</label>
+                      <input type="text" name="nome" class="form-control" id="validationCustom01" value="{{$curso->nome}}" required>
+                      <div class="valid-feedback">
+                        Esta bom!
+                      </div>
+                    </div>
+                    <div class="form-check form-switch mt-3">
+                      <input class="form-check-input"name="status" type="checkbox" id="flexSwitchCheckChecked" {{ $curso->status?"checked":""}}>
+                      <label class="form-check-label" for="flexSwitchCheckChecked">status</label>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <div class="col-12">
+                        <button type="reset" class="btn btn-secondary" id="btn-reset">Resetar</button>
+                        <button type="submit" class="btn btn-primary" id="btn-save">actualizar</button>
+                      </div>
+                  </div>
+                     <input type="hidden" name="id" class="form-control" id="id" value="{{$curso->id}}" required>
+                 </form><!-- Vertical Form -->
+              @endif
+          </div>
         </div>
-      </form>
-    </div>
-    @endif
-
-    {{----------EDITAR-------------}}
-
-    @if(isset($typeForm) && $typeForm == "edit")
-    <div class="wizard-header">
-      <h3 class="heading">Adicionar o Usuário</h3>
-      <p>Preencha todos os campos do formulário, para ir para próxima etapa. </p>
-    </div>
-    <form class="form-register" action="/admin/fornecedor/{{$fornecedor->id}}" method="post">
-      @method('PUT')
-      @csrf
-      <div id="form-total">
-        <!-- SECTION 1 -->
-        <h2>
-          <span class="step-icon"><i class="zmdi zmdi-account"></i></span>
-          <span class="step-text">Perfil</span>
-        </h2>
-        <section>
-          <div>
-
-          </div>
-          <div class="inner">
-            <h3>Dados Pessoais</h3>
-
-            <div class="row">
-              <div class="col-md-12 pr-1">
-                <label class="form-label" for="nome">Nome<span class="required">*</span></label>
-                <input type="text" name="nome" value="{{ $fornecedor->name}}" id="nome" class="form-control" required>
-              </div>
-            </div>
-            <div class="row mt-3">
-              <div class="col-md-12 pr-1">
-                <label class="form-label" for="cargos">Cargo<span class="required">*</span></label>
-                <select class="form-select" id="cargos" name="cargo" required>
-                  <option selected disabled value="">Selecione Cargo</option>
-                  @if(isset($cargos) && count($cargos) > 0)
-
-                  @foreach($cargos as $cargo)
-                  <option value="{{ $cargo->id }}" {{ $role_id == $cargo->id?'selected':''}}> {{ $cargo->name }} </option>
-                  @endforeach
-                  @endif
-                </select>
-              </div>
-              <div>
-                <div class="form-check form-switch mt-3">
-                  <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckChecked" {{
-                    $fornecedor->status?"checked":""}}>
-                  <label class="form-check-label" for="flexSwitchCheckChecked">status</label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- SECTION 2 -->
-        <h2>
-          <span class="step-icon"><i class="zmdi zmdi-phone"></i></span>
-          <span class="step-text">Contactos</span>
-        </h2>
-
-        <section>
-          <div class="inner">
-            <h3>Contactos:</h3>
-            <div class="row ">
-              <div class="col-md-6 pr-1">
-                <label class="form-label" for="telefone">Telefone <span class="required">*</span></label>
-                <input type="text" name="telefone" value="{{ $fornecedor->telefone}}" id="telefone" class="form-control"
-                  required>
-              </div>
-              <div class="col-md-6 pl-1">
-                <label class="form-label" for="email">E-mail<span class="required">*</span></label>
-                <input type="text" name="email" value="{{ $fornecedor->email}}" id="email" class="form-control" required />
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- SECTION 3 -->
-        <h2>
-          <span class="step-icon"><i class="zmdi zmdi-lock"></i></span>
-          <span class="step-text">Credenciais</span>
-        </h2>
-        <section>
-          <div class="inner">
-            <h3>Credenciais:</h3>
-          </div>
-
-          <div class="row mt-3">
-            <div class="col-md-6 pr-1">
-              <label class="form-label" for="password">Senha <span class="required">*</span></label>
-              <input type="text" name="password" id="password" class="form-control" required>
-            </div>
-            <div class="col-md-6 pl-1">
-              <label class="form-label" for="obs">Conforma a Senha<span class="required">*</span></label>
-              <input type="text" name="obs" id="passwordConfirm" class="form-control" required />
-            </div>
-          </div>
-        </section>
-        <!-- SECTION 4 -->
-        <h2>
-          <span class="step-icon"><i class="zmdi zmdi-receipt"></i></span>
-          <span class="step-text">Confirmar</span>
-        </h2>
-        <section>
-          <div class="inner">
-            <h3>Confirmar Detalhes:</h3>
-            <div class="form-row table-responsive">
-              <table class="table">
-                <tbody>
-                  <tr class="space-row">
-                    <th>Nome:</th>
-                    <td id="nome-detail"></td>
-                  </tr>
-                  <tr class="space-row">
-                    <th>Telefone:</th>
-                    <td id="telefone-detail"></td>
-                  </tr>
-                  <tr class="space-row">
-                    <th>E-mail:</th>
-                    <td id="email-detail"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-      </div>
-      <input type="hidden" value="{{ $fornecedor->id}}" name="id" />
-    </form>
-  </div>
-  @endif
-</div>
-</div>
+     </div>
+    </section>
 @endsection
 @push('scripts')
 <script src="{{asset('assets/form-steps/js/jquery-3.3.1.min.js')}}"></script>
