@@ -80,14 +80,14 @@ class FornecedorController extends Controller
 
                $data    = $fornecedor->create([
                     'nif'           => $request->nif,
-                    'nome'          =>               $request->nome,
-                    'email'         =>$request->email,
-                    'status'        => $status,
-                    'telefone'      => $request->telefone,
-                    'endereco'      =>$request->endereco,
-                    'representante' => $representante
+                    'nome'          =>  $request->nome,
+                    'email'         =>  $request->email,
+                    'status'        =>  $status,
+                    'telefone'      =>  $request->telefone,
+                    'endereco'      =>  $request->endereco,
+                    'representante' =>  $request->representante
                ]);
-               
+
                if($data)
                {
                   $response =  ['status'=>true,'messages'=>"fornecedor <b>$data->nome</b> cadastrado com sucesso","data"=>$data];
@@ -125,7 +125,53 @@ class FornecedorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+      
+            $status = '1';
+
+            if(!$validatorInput){
+            return redirect()->back();
+            }
+
+            $fornecedor  = $this->fornecedor->find($request->id);
+            if(!isset($fornecedor->id) || $fornecedor == null)
+             {
+               $response =  ['status'=>false,'messages'=>"fornecedor não encontrado."];
+               session()->flash('status',$response);
+               return redirect()->back();
+             }
+
+             $status = "1";
+             if(!isset($request->status) || !$request->status){
+                $status = "0";
+             }
+
+            $fornecedor  = fornecedor;
+
+            $data    = $fornecedor->update([
+                'nif'           => $request->nif,
+                'nome'          =>  $request->nome,
+                'email'         =>  $request->email,
+                'status'        =>  $status,
+                'telefone'      =>  $request->telefone,
+                'endereco'      =>  $request->endereco,
+                'representante' =>  $request->representante
+            ]);
+
+            if($data)
+            {
+                $response =  ['status'=>true,'messages'=>"fornecedor <b>$data->nome</b> actualizado com sucesso","data"=>$data];
+            }else
+            {
+                $response =  ['status'=>true,'messages'=>"Erro ao actualizar o fornecedor "];
+            }
+    
+            session()->flash('status',$response);
+            return redirect()->back();
+          }catch(Exception $e)
+          {
+            return redirectError('admin/fornecedor',  $e->getMessage());
+          }
     }
 
     /**
