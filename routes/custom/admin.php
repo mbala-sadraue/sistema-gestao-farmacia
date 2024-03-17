@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Panel\Admin\UserController;
 use App\Http\Controllers\Panel\Admin\DashboardController;
-
+use App\Http\Controllers\Panel\Admin\FornecedorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,8 +21,8 @@ Route::middleware('auth','role:administrador')->get("/", [DashboardController::c
 Route::middleware('auth','role:administrador')->prefix('admin')->group(function(){
     
     Route::get("/", [DashboardController::class,'index'])->name('admin.dashboard');
-    /*
-    |ROUTA DE USUARIOS
-    */
+    
+    Route::resource('fornecedor',FornecedorController::class);
+    // Rota do usuario 
     Route::resource('user',UserController::class);
 });
