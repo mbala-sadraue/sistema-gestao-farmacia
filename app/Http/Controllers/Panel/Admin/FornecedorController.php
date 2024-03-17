@@ -183,10 +183,9 @@ class FornecedorController extends Controller
     
             session()->flash('status',$response);
             return redirect()->back();
-          }catch(Exception $e)
-          {
+        }catch(Exception $e){
             return redirectError('admin/fornecedor',  $e->getMessage());
-          }
+        }
     }
 
     /**
@@ -194,7 +193,46 @@ class FornecedorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+
+            $validator = Validator::make(['id'=>$id],[
+               'id'=>'required|integer'
+            ]);
+   
+            if($validator->fails()){
+                $msg= "Todos os campos são obrigatorio<br/>";
+               foreach($validator->errors()->all() as $error){
+                  $msg = $msg." $error <br/>";
+               }
+               $response =  ['statud'=>false,'messages'=>$msg];
+   
+                 session()->flash('statud',$response);
+   
+                return redirect()->back();
+            }
+   
+            $fornecedor     = $this->fornecedor->find($id);
+            if(!isset($fornecedor->id) || $fornecedor == null)
+             {
+               $response =  ['statud'=>false,'messages'=>"O fornecedor não encontrado."];
+               session()->flash('statud',$response);
+               return redirect()->back();
+             }
+            $delete    = $fornecedor->delete();
+   
+            if($delete)
+            {
+               $response =  ['statud'=>true,'messages'=>"<b>fornecedor</b> eliminado com sucesso","data"=>$delete];
+            }else
+            {
+               $response =  ['statud'=>true,'messages'=>"Erro ao eliminar o fornecedor "];
+            }
+            session()->flash('statud',$response);
+           return redirect()->back();
+       }catch(Exception $e)
+       {
+            $this->tratarException($e);
+       }
     }
 
     // VALIDA OS COMPOS Obrigatorio
