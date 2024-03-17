@@ -5,7 +5,7 @@
 @section('content-admin')
 <div class="pagetitle">
         <div>
-            <h1>Fornecedor</h1>
+            <h1>Fornecedores</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
@@ -74,7 +74,7 @@
 
                                     </td>
                                     <td class="">
-                                        <a href="/admin/fornecedor/detail/{{ $fornecedor->id }}"><button
+                                        <a href="#"><button
                                                 class="btn-accoes"><i class="ri-eye-fill"></i></button></a>
                                         <a href="/admin/fornecedor/{{ $fornecedor->id }}/edit">
                                             <button class="btn-accoes"><i class="ri-edit-box-line"></i></button></a>

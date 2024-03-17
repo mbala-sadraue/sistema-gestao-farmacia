@@ -61,7 +61,7 @@
                 </div>
               </div>
               <div class="col-md-6 pl-1">
-                <label for="validaterepresentante" class="form-label">representante</label>
+                <label for="validaterepresentante" class="form-label">Representante</label>
                 <input type="text" name="representante" class="form-control" id="validaterepresentante"
                   value="{{ old('nome')}}" title="Digite o Representante" required>
                 <div class="invalid-feedback">
@@ -177,6 +177,15 @@
                   Endereço é obrigatório!
                 </div>
               </div>
+            </div>
+            <div class="row">
+             <div class="col-md-12">
+              <div class="form-check form-switch mt-3">
+                <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckChecked" {{
+                  $fornecedor->status?"checked":""}}>
+                <label class="form-check-label" for="flexSwitchCheckChecked">status</label>
+              </div>
+             </div>
             </div>
           </div>
           <div class="card-footer">
