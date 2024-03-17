@@ -184,9 +184,9 @@ class FornecedorController extends Controller
             }
     
             session()->flash('status',$response);
-            return redirect()->back();
+            return redirect("/admin/fornecedor")->back();
         }catch(Exception $e){
-            return redirectError('admin/fornecedor',  $e->getMessage());
+            return redirectError('/admin/fornecedor',  $e->getMessage());
         }
     }
 
