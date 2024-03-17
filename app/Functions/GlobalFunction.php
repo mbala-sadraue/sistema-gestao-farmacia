@@ -85,7 +85,7 @@ function getDados($oque)
    switch($oque){
        case 'fornecedores':
          $result_query  = Forncedor::orderBy('name','asc')->
-                           where('status','1')->get();
+                           where('status','1');
        break;
        
    }

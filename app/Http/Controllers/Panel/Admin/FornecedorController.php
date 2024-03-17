@@ -39,7 +39,7 @@ class FornecedorController extends Controller
 
             $fornecedores  = $fornecedores->paginate($sizePaginete);
     
-            return view('painel.admin.fornecedores.all.index',compact('fornecedores'));
+            return view('panel.admin.fornecedores.list.index',compact('fornecedores'));
             
     
         }catch(Exception $e)
@@ -128,7 +128,7 @@ class FornecedorController extends Controller
              }
       
              $typeForm = "edit";
-            return view('painel.admin.fornecedores.form.form',compact("typeForm",'fornecedor','departamentos'));
+            return view('panel.admin.fornecedores.form.form',compact("typeForm",'fornecedor','departamentos'));
           }catch(Exception $e)
           {
             $this->tratarException($e);
