@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Forncedor extends Model
 {
     use HasFactory;
+    protected $table = 'fornecedores';
 
    /**
      * The attributes that are mass assignable.

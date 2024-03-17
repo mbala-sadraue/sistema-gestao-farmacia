@@ -32,9 +32,9 @@ class FornecedorController extends Controller
     
             }
     
-            if(request('nome') && !isNullOrEmpty(request('nome')))
+            if(request('name') && !isNullOrEmpty(request('name')))
             {
-                $fornecedores = searchByField($fornecedores,"nome",request('nome'));
+                $fornecedores = searchByField($fornecedores,"name",request('name'));
             }
 
             $fornecedores  = $fornecedores->paginate($sizePaginete);
@@ -80,7 +80,7 @@ class FornecedorController extends Controller
 
                $data    = $fornecedor->create([
                     'nif'           => $request->nif,
-                    'nome'          =>  $request->nome,
+                    'name'          =>  $request->name,
                     'email'         =>  $request->email,
                     'status'        =>  $status,
                     'telefone'      =>  $request->telefone,
@@ -90,7 +90,7 @@ class FornecedorController extends Controller
 
                if($data)
                {
-                  $response =  ['status'=>true,'messages'=>"fornecedor <b>$data->nome</b> cadastrado com sucesso","data"=>$data];
+                  $response =  ['status'=>true,'messages'=>"fornecedor <b>$data->name</b> cadastrado com sucesso","data"=>$data];
                }else
                {
                   $response =  ['status'=>true,'messages'=>"Erro ao cadastrar o fornecedor "];
@@ -165,7 +165,7 @@ class FornecedorController extends Controller
 
             $data    = $fornecedor->update([
                 'nif'           => $request->nif,
-                'nome'          =>  $request->nome,
+                'name'          =>  $request->name,
                 'email'         =>  $request->email,
                 'status'        =>  $status,
                 'telefone'      =>  $request->telefone,
@@ -175,7 +175,7 @@ class FornecedorController extends Controller
 
             if($data)
             {
-                $response =  ['status'=>true,'messages'=>"fornecedor <b>$data->nome</b> actualizado com sucesso","data"=>$data];
+                $response =  ['status'=>true,'messages'=>"fornecedor <b>$data->name</b> actualizado com sucesso","data"=>$data];
             }else
             {
                 $response =  ['status'=>true,'messages'=>"Erro ao actualizar o fornecedor "];
