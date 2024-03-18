@@ -116,7 +116,22 @@ class ProdutoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        try{
+            $produto     = $this->produto->find($id);
+
+             if(!isset($produto->id) || $produto == null)
+             {
+               $response =  ['status'=>false,'messages'=>"produto não encontrado."];
+               session()->flash('status',$response);
+               return redirect()->back();;
+             }
+      
+             $typeForm = "edit";
+            return view('panel.admin.produtos.form.form',compact("typeForm",'produto'));
+          }catch(Exception $e)
+          {
+            return redirectError('/admin/produto',  $e->getMessage());
+          }
     }
 
     /**
