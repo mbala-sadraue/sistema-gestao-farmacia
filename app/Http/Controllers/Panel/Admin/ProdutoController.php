@@ -139,7 +139,48 @@ class ProdutoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+            // dd($request);
+      
+            $status = '1';
+
+            $ipuntValidatorInput = $this->validatorInput($request,false);
+            if(!$ipuntValidatorInput){
+            return redirect()->back();
+            }
+
+            $produto  = $this->produto->find($request->id);
+            if(!isset($produto->id) || $produto == null)
+             {
+               $response =  ['status'=>false,'messages'=>"produto não encontrado."];
+               session()->flash('status',$response);
+               return redirect()->back();
+             }
+
+             $status = "1";
+             if(!isset($request->status) || !$request->status){
+                $status = "0";
+             }
+
+            $data    = $produto->update([
+                'name'          =>  $request->name,
+                'status'        =>  $status,
+                'description'   =>  $request->description,
+            ]);
+
+            if($data)
+            {
+                $response =  ['status'=>true,'messages'=>"produto <b>$request->name</b> actualizado com sucesso","data"=>$data];
+            }else
+            {
+                $response =  ['status'=>false,'messages'=>"Erro ao actualizar o produto "];
+            }
+    
+            session()->flash('status',$response);
+            return redirect("/admin/produto");
+        }catch(Exception $e){
+            return redirectError('/admin/produto',  $e->getMessage());
+        }
     }
 
     /**
@@ -147,6 +188,6 @@ class ProdutoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        
     }
 }

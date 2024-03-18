@@ -142,7 +142,6 @@ class FornecedorController extends Controller
     public function update(Request $request, string $id)
     {
         try{
-            // dd($request);
       
             $status = '1';
 
