@@ -71,7 +71,36 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+      
+            $status = '1';
+            $ipuntValidatorInput = $this->validatorInput($request,false);
+               if(!$ipuntValidatorInput){
+                return redirect()->back();
+               }
+               
+               $produto  = $this->produto;
+
+               $data    = $produto->create([
+                    'name'          =>  $request->name,
+                    'status'        =>  $status,
+                    'description'   =>  $request->description,
+               ]);
+
+               if($data)
+               {
+                  $response =  ['status'=>true,'messages'=>"produto <b>$data->name</b> cadastrado com sucesso","data"=>$data];
+               }else
+               {
+                  $response =  ['status'=>true,'messages'=>"Erro ao cadastrar o produto "];
+               }
+      
+               session()->flash('status',$response);
+               return redirect("admin/produto");
+          }catch(Exception $e)
+          {
+            return redirectError('admin/produto',  $e->getMessage());
+          }
     }
 
     /**
