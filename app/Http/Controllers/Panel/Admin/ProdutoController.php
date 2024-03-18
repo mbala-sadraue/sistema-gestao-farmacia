@@ -188,6 +188,45 @@ class ProdutoController extends Controller
      */
     public function destroy(string $id)
     {
-        
+        try{
+
+            $validator = Validator::make(['id'=>$id],[
+               'id'=>'required|integer'
+            ]);
+   
+            if($validator->fails()){
+                $msg= "Todos os campos são obrigatorio<br/>";
+               foreach($validator->errors()->all() as $error){
+                  $msg = $msg." $error <br/>";
+               }
+               $response =  ['statud'=>false,'messages'=>$msg];
+   
+                 session()->flash('statud',$response);
+   
+                return redirect()->back();
+            }
+   
+            $produto     = $this->produto->find($id);
+            if(!isset($produto->id) || $produto == null)
+             {
+               $response =  ['statud'=>false,'messages'=>"O produto não encontrado."];
+               session()->flash('statud',$response);
+               return redirect()->back();
+             }
+            $delete    = $produto->delete();
+   
+            if($delete)
+            {
+               $response =  ['statud'=>true,'messages'=>"<b>produto</b> eliminado com sucesso","data"=>$delete];
+            }else
+            {
+               $response =  ['statud'=>true,'messages'=>"Erro ao eliminar o produto "];
+            }
+            session()->flash('statud',$response);
+           return redirect()->back();
+       }catch(Exception $e)
+       {
+            return redirectError('/admin/produto',  $e->getMessage());
+       } 
     }
 }
