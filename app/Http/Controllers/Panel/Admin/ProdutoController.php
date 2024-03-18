@@ -2,17 +2,49 @@
 
 namespace App\Http\Controllers\Panel\Admin;
 
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Admin\Produto;
 class ProdutoController extends Controller
 {
+
+    var $produto = null; 
+
+    public function __construct(Produto $produto){
+        
+        $this->produto = $produto;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        try{
+            $produtos = Produto::orderBy('name','asc');
+            $sizePaginete = 5;
+    
+    
+            if(request("size"))
+            {
+                $sizePaginete = isCorretoSizePaginate(request("size"));
+    
+            }
+    
+            if(request('name') && !isNullOrEmpty(request('name')))
+            {
+                $produtos = searchByField($produtos,"name",request('name'));
+            }
+
+            $produtos  = $produtos->paginate($sizePaginete);
+    
+            return view('panel.admin.produtos.list.index',compact('produtos'));
+            
+    
+        }catch(Exception $e)
+        {
+            return redirectError('admin/fornecedor',  $e->getMessage());
+        }
     }
 
     /**
