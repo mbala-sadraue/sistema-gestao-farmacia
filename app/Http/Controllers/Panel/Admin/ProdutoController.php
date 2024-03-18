@@ -35,6 +35,10 @@ class ProdutoController extends Controller
             {
                 $produtos = searchByField($produtos,"name",request('name'));
             }
+            if(request('description') && !isNullOrEmpty(request('description')))
+            {
+                $produtos = searchByField($produtos,"description",request('description'));
+            }
 
             $produtos  = $produtos->paginate($sizePaginete);
     
@@ -43,7 +47,7 @@ class ProdutoController extends Controller
     
         }catch(Exception $e)
         {
-            return redirectError('admin/fornecedor',  $e->getMessage());
+            return redirectError('admin/produto',  $e->getMessage());
         }
     }
 
@@ -52,7 +56,14 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        //
+        try {
+
+            $typeForm = 'create';
+             return view('panel.admin.produtos.form.form',compact('typeForm'));
+ 
+         } catch (Exception $th) {
+             return redirectError('admin/produto',  $e->getMessage());
+         }
     }
 
     /**
