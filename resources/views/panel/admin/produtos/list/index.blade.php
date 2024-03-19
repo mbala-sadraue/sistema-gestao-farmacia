@@ -56,7 +56,7 @@
                             @foreach ($produtos as $produto)
                                 <tr>
                                     <td>{{ $produto->name }}</td>
-                                    <td>{{ $produto->description }}</td>>
+                                    <td>{{ $produto->description }}</td>
                                     <td>
                                         @if( $produto->status )
                                         <i class="bi bi-circle-fill Status-active"></i>
