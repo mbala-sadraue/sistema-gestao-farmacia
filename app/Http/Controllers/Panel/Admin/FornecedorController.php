@@ -231,7 +231,7 @@ class FornecedorController extends Controller
            return redirect()->back();
        }catch(Exception $e)
        {
-            $this->tratarException($e);
+            return redirectError('/admin/fornecedor',  $e->getMessage());
        }
     }
 
