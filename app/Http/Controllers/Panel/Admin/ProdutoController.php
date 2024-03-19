@@ -5,17 +5,15 @@ namespace App\Http\Controllers\Panel\Admin;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Admin\Forncedor;
-
-class FornecedorController extends Controller
+use App\Models\Admin\Produto;
+class ProdutoController extends Controller
 {
 
+    var $produto = null; 
 
-    var $fornecedor = null; 
-
-    public function __construct(Forncedor $fornecedor){
+    public function __construct(Produto $produto){
         
-        $this->fornecedor = $fornecedor;
+        $this->produto = $produto;
     }
     /**
      * Display a listing of the resource.
@@ -23,7 +21,7 @@ class FornecedorController extends Controller
     public function index()
     {
         try{
-            $fornecedores = Forncedor::orderBy('name','asc');
+            $produtos = Produto::orderBy('name','asc');
             $sizePaginete = 5;
     
     
@@ -35,17 +33,21 @@ class FornecedorController extends Controller
     
             if(request('name') && !isNullOrEmpty(request('name')))
             {
-                $fornecedores = searchByField($fornecedores,"name",request('name'));
+                $produtos = searchByField($produtos,"name",request('name'));
+            }
+            if(request('description') && !isNullOrEmpty(request('description')))
+            {
+                $produtos = searchByField($produtos,"description",request('description'));
             }
 
-            $fornecedores  = $fornecedores->paginate($sizePaginete);
+            $produtos  = $produtos->paginate($sizePaginete);
     
-            return view('panel.admin.fornecedores.list.index',compact('fornecedores'));
+            return view('panel.admin.produtos.list.index',compact('produtos'));
             
     
         }catch(Exception $e)
         {
-            return redirectError('admin/fornecedor',  $e->getMessage());
+            return redirectError('admin/produto',  $e->getMessage());
         }
     }
 
@@ -56,12 +58,12 @@ class FornecedorController extends Controller
     {
         try {
 
-           $typeForm = 'create';
-            return view('panel.admin.fornecedores.form.form',compact('typeForm'));
-
-        } catch (Exception $th) {
-            return redirectError('admin/fornecedor',  $e->getMessage());
-        }
+            $typeForm = 'create';
+             return view('panel.admin.produtos.form.form',compact('typeForm'));
+ 
+         } catch (Exception $th) {
+             return redirectError('admin/produto',  $e->getMessage());
+         }
     }
 
     /**
@@ -77,31 +79,27 @@ class FornecedorController extends Controller
                 return redirect()->back();
                }
                
-               $fornecedor  = $this->fornecedor;
+               $produto  = $this->produto;
 
-               $data    = $fornecedor->create([
-                    'nif'           => $request->nif,
+               $data    = $produto->create([
                     'name'          =>  $request->name,
-                    'email'         =>  $request->email,
                     'status'        =>  $status,
-                    'telefone'      =>  $request->telefone,
-                    'endereco'      =>  $request->endereco,
-                    'representante' =>  $request->representante
+                    'description'   =>  $request->description,
                ]);
 
                if($data)
                {
-                  $response =  ['status'=>true,'messages'=>"fornecedor <b>$data->name</b> cadastrado com sucesso","data"=>$data];
+                  $response =  ['status'=>true,'messages'=>"produto <b>$data->name</b> cadastrado com sucesso","data"=>$data];
                }else
                {
-                  $response =  ['status'=>true,'messages'=>"Erro ao cadastrar o fornecedor "];
+                  $response =  ['status'=>true,'messages'=>"Erro ao cadastrar o produto "];
                }
       
                session()->flash('status',$response);
-               return redirect("admin/fornecedor");
+               return redirect("admin/produto");
           }catch(Exception $e)
           {
-            return redirectError('admin/fornecedor',  $e->getMessage());
+            return redirectError('admin/produto',  $e->getMessage());
           }
     }
 
@@ -119,20 +117,20 @@ class FornecedorController extends Controller
     public function edit(string $id)
     {
         try{
-            $fornecedor     = $this->fornecedor->find($id);
+            $produto     = $this->produto->find($id);
 
-             if(!isset($fornecedor->id) || $fornecedor == null)
+             if(!isset($produto->id) || $produto == null)
              {
-               $response =  ['status'=>false,'messages'=>"fornecedor não encontrado."];
+               $response =  ['status'=>false,'messages'=>"produto não encontrado."];
                session()->flash('status',$response);
                return redirect()->back();;
              }
       
              $typeForm = "edit";
-            return view('panel.admin.fornecedores.form.form',compact("typeForm",'fornecedor'));
+            return view('panel.admin.produtos.form.form',compact("typeForm",'produto'));
           }catch(Exception $e)
           {
-            return redirectError('/admin/fornecedor',  $e->getMessage());
+            return redirectError('/admin/produto',  $e->getMessage());
           }
     }
 
@@ -142,6 +140,7 @@ class FornecedorController extends Controller
     public function update(Request $request, string $id)
     {
         try{
+            // dd($request);
       
             $status = '1';
 
@@ -150,10 +149,10 @@ class FornecedorController extends Controller
             return redirect()->back();
             }
 
-            $fornecedor  = $this->fornecedor->find($request->id);
-            if(!isset($fornecedor->id) || $fornecedor == null)
+            $produto  = $this->produto->find($request->id);
+            if(!isset($produto->id) || $produto == null)
              {
-               $response =  ['status'=>false,'messages'=>"fornecedor não encontrado."];
+               $response =  ['status'=>false,'messages'=>"produto não encontrado."];
                session()->flash('status',$response);
                return redirect()->back();
              }
@@ -163,28 +162,24 @@ class FornecedorController extends Controller
                 $status = "0";
              }
 
-            $data    = $fornecedor->update([
-                'nif'           => $request->nif,
+            $data    = $produto->update([
                 'name'          =>  $request->name,
-                'email'         =>  $request->email,
                 'status'        =>  $status,
-                'telefone'      =>  $request->telefone,
-                'endereco'      =>  $request->endereco,
-                'representante' =>  $request->representante
+                'description'   =>  $request->description,
             ]);
 
             if($data)
             {
-                $response =  ['status'=>true,'messages'=>"fornecedor <b>$request->name</b> actualizado com sucesso","data"=>$data];
+                $response =  ['status'=>true,'messages'=>"produto <b>$request->name</b> actualizado com sucesso","data"=>$data];
             }else
             {
-                $response =  ['status'=>false,'messages'=>"Erro ao actualizar o fornecedor "];
+                $response =  ['status'=>false,'messages'=>"Erro ao actualizar o produto "];
             }
     
             session()->flash('status',$response);
-            return redirect("/admin/fornecedor");
+            return redirect("/admin/produto");
         }catch(Exception $e){
-            return redirectError('/admin/fornecedor',  $e->getMessage());
+            return redirectError('/admin/produto',  $e->getMessage());
         }
     }
 
@@ -211,28 +206,29 @@ class FornecedorController extends Controller
                 return redirect()->back();
             }
    
-            $fornecedor     = $this->fornecedor->find($id);
-            if(!isset($fornecedor->id) || $fornecedor == null)
+            $produto     = $this->produto->find($id);
+            if(!isset($produto->id) || $produto == null)
              {
-               $response =  ['statud'=>false,'messages'=>"O fornecedor não encontrado."];
+               $response =  ['statud'=>false,'messages'=>"O produto não encontrado."];
                session()->flash('statud',$response);
                return redirect()->back();
              }
-            $delete    = $fornecedor->delete();
+            $delete    = $produto->delete();
    
             if($delete)
             {
-               $response =  ['statud'=>true,'messages'=>"<b>fornecedor</b> eliminado com sucesso","data"=>$delete];
+               $response =  ['statud'=>true,'messages'=>"<b>produto</b> eliminado com sucesso","data"=>$delete];
             }else
             {
-               $response =  ['statud'=>true,'messages'=>"Erro ao eliminar o fornecedor "];
+               $response =  ['statud'=>true,'messages'=>"Erro ao eliminar o produto "];
             }
             session()->flash('statud',$response);
            return redirect()->back();
        }catch(Exception $e)
        {
-            return redirectError('/admin/fornecedor',  $e->getMessage());
-       }
+            return redirectError('/admin/produto',  $e->getMessage());
+       } 
+       
     }
 
     // VALIDA OS COMPOS Obrigatorio
@@ -240,6 +236,7 @@ class FornecedorController extends Controller
     {
     $validator = Validator::make($request->all(),[
         'name'                  =>'required|max:100',
+        'description'                  =>'required|max:300',
         'id'                    =>$params?'required|integer':''
         ]);
 
