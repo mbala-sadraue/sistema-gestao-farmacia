@@ -48,27 +48,77 @@
           <p class="card-header-p">Formulário para cadastrar produto</p>
         </div>
         <!-- Vertical Form -->
-        <form class=" g-3 needs-validation" novalidate method="post" action="/admin/produto">
+        <form class=" g-3 needs-validation" novalidate method="post" action="/admin/itens">
           @csrf
           <div class="card-body">
             <div class="row">
               <div class="col-md-6 pr-1">
-                <label for="validateNome" class="form-label">Nome</label>
-                <input type="text" name="name" class="form-control" id="validateNome" value="{{ old('nome')}}"
-                  title="Digite o Nome" required>
+                <label for="validateproduto" class="form-label">Produto</label>
+                  <select class="form-select" id="validateproduto" name="produto_id" required>
+                    <option selected disabled value="">Selecione o Produto</option>
+                    @if(count(getDados('produtos')) > 0)
+
+                    @foreach(getDados('produtos') as $produto)
+                    <option value="{{ $produto->id }}"> {{ $produto->name }} </option>
+                    @endforeach
+                    @endif
+                  </select>
                 <div class="invalid-feedback">
                   Nome é obrigatório!
                 </div>
               </div>
               <div class="col-md-6 pl-1">
-                <label for="validatedescription" class="form-label">Descrição</label>
-                <input type="text" name="description" class="form-control" id="validatedescription"
-                  value="{{ old('description')}}" title="Digite oa Descrição" required>
+                <label for="validatefornecedor" class="form-label">Fornecedor</label>
+                  <select class="form-select" id="validateproduto" name="fornecedor_id" required>
+                    <option selected disabled value="">Selecione o Fornecedor</option>
+                    @if(count(getDados('fornecedores')) > 0)
+
+                    @foreach(getDados('fornecedores') as $fornecedor)
+                    <option value="{{ $fornecedor->id }}"> {{ $fornecedor->name }} </option>
+                    @endforeach
+                    @endif
+                  </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <label for="validateCodProduto" class="form-label">Código Produto</label>
+                <input type="text" name="codProduto" class="form-control" id="validateCodProduto"
+                  value="{{ old('codProduto')}}" title="Digite o Código do Produto" required>
                 <div class="invalid-feedback">
-                  Descrição é obrigatório!
+                  Código do Produto é obrigatório!
+                </div>
+              </div>
+              <div class="col-md-6 pl-1">
+                <label for="validatequantidade" class="form-label">Quantidade</label>
+                <input type="text" name="quantCompra" class="form-control" id="validatequantidade"
+                  value="{{ old('quantCompra')}}" title="Digite o Quantidade" required>
+                <div class="invalid-feedback">
+                  Quantidade é obrigatório!
                 </div>
               </div>
             </div>
+
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <label for="validateValorCompra" class="form-label">Valor de compra</label>
+                <input type="text" name="precoCompra" class="form-control" id="validateValorCompra"
+                  value="{{ old('precoCompra')}}" title="Digite o Valor de compra" required>
+                <div class="invalid-feedback">
+                  Valor de compra é obrigatório!
+                </div>
+              </div>
+              <div class="col-md-6 pl-1">
+                <label for="validateValorVenda" class="form-label">Valor de venda</label>
+                <input type="text" name="precoVenda" class="form-control" id="validateValorVenda"
+                  value="{{ old('precoVenda')}}" title="Digite o Valor de venda" required>
+                <div class="invalid-feedback">
+                  Valor de venda é obrigatório!
+                </div>
+              </div>
+            </div>
+
           </div>
           <div class="card-footer">
             <div class="col-12">
@@ -91,29 +141,29 @@
             <div class="row">
               <div class="col-md-6 pr-1">
                 <label for="validateNome" class="form-label">Nome</label>
-                <input type="text" name="name" class="form-control" id="validateNome"  value="{{ $produto->name }}"
+                <input type="text" name="name" class="form-control" id="validateNome" value="{{ $produto->name }}"
                   title="Digite o Nome" required>
                 <div class="invalid-feedback">
                   Nome é obrigatório!
                 </div>
               </div>
               <div class="col-md-6 pl-1">
-                <label for="validatedescription" class="form-label">Resentante</label>
-                <input type="text" name="description" class="form-control" id="validatedescription"
-                value="{{ $produto->description }}" title="Digite o Descrição" required>
+                <label for="validatefornecedor" class="form-label">Resentante</label>
+                <input type="text" name="fornecedor" class="form-control" id="validatefornecedor"
+                  value="{{ $produto->fornecedor }}" title="Digite o Fornecedor" required>
                 <div class="invalid-feedback">
-                  Descrição é obrigatório!
+                  Fornecedor é obrigatório!
                 </div>
               </div>
             </div>
             <div class="row">
-             <div class="col-md-12">
-              <div class="form-check form-switch mt-3">
-                <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckChecked" {{
-                  $produto->status?"checked":""}}>
-                <label class="form-check-label" for="flexSwitchCheckChecked">status</label>
+              <div class="col-md-12">
+                <div class="form-check form-switch mt-3">
+                  <input class="form-check-input" name="status" type="checkbox" id="flexSwitchCheckChecked" {{
+                    $produto->status?"checked":""}}>
+                  <label class="form-check-label" for="flexSwitchCheckChecked">status</label>
+                </div>
               </div>
-             </div>
             </div>
           </div>
           <div class="card-footer">
@@ -122,7 +172,7 @@
               <button type="submit" class="btn btn-primary" id="btn-save">salvar</button>
             </div>
           </div>
-          <input type="hidden" name="id"  value="{{ $produto->id }}">
+          <input type="hidden" name="id" value="{{ $produto->id }}">
         </form><!-- Vertical Form -->
 
         @endif

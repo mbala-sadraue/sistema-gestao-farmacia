@@ -16,7 +16,7 @@ class Itens extends Model
       * @var array<int, string>
       */
      protected $fillable = [
-         'codproduto',
+         'codProduto',
          'produto_id',
          'precoVenda',
          'precoCompra',

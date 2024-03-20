@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('itens', function (Blueprint $table) {
             $table->id();
-            $table->string("codproduto");
+            $table->string("codProduto");
             $table->string("precoVenda");
             $table->string("precoCompra");
             $table->string("quantEstoque");

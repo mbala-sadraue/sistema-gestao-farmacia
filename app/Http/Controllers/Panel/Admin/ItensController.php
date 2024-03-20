@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Panel\Admin;
 
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Itens;
@@ -21,7 +22,7 @@ class ItensController extends Controller
     public function index()
     {
         try{
-            $itens = Itens::orderBy('name','asc');
+            $itens = Itens::where('id','>',0);
             $sizePaginete = 5;
     
     
@@ -31,9 +32,9 @@ class ItensController extends Controller
     
             }
     
-            if(request('codproduto') && !isNullOrEmpty(request('codproduto')))
+            if(request('codProduto') && !isNullOrEmpty(request('codProduto')))
             {
-                $itens = searchByField($itens,"codproduto",request('codproduto'));
+                $itens = searchByField($itens,"codProduto",request('codProduto'));
             }
             if(request('produto_id') && !isNullOrEmpty(request('produto_id')))
             {
@@ -61,6 +62,8 @@ class ItensController extends Controller
     public function create()
     {
         try {
+        //    $produtos =  getDados('produtos');
+        //    dd(count($produtos));
 
             $typeForm = 'create';
              return view('panel.admin.itens.form.form',compact('typeForm'));
@@ -86,13 +89,13 @@ class ItensController extends Controller
                $item  = $this->item;
 
                $data    = $item->create([
-                    'codproduto'    =>  $request->codproduto,
+                    'codProduto'    =>  $request->codProduto,
                     'produto_id'    =>  $request->produto_id,
                     'precoVenda'    =>  $request->precoVenda,
                     'precoCompra'   =>  $request->precoCompra,
-                    'quantEstoque'  =>  $request->quantEstoque,
                     'quantCompra'   =>  $request->quantCompra,
-                    'quantVendido'  =>  $request->quantVendido,
+                    'quantEstoque'  =>  $request->quantCompra,
+                    'quantVendido'  =>  0,
                     'fornecedor_id' =>  $request->fornecedor_id,
                     'status'        =>  $status,
                ]);
@@ -171,7 +174,7 @@ class ItensController extends Controller
              }
 
             $data    = $item->update([
-                'codproduto'    =>  $request->codproduto,
+                'codProduto'    =>  $request->codProduto,
                 'produto_id'    =>  $request->produto_id,
                 'precoVenda'    =>  $request->precoVenda,
                 'precoCompra'   =>  $request->precoCompra,
@@ -248,8 +251,10 @@ class ItensController extends Controller
     private function validatorInput($request,$params = false,$admin = false)
     {
     $validator = Validator::make($request->all(),[
-        'codproduto'    =>'required|max:100',
+        'codProduto'    =>'required|max:100',
         'precoVenda'    =>'required|max:300',
+        'precoCompra'    =>'required|max:100',
+        'quantCompra'    =>'required|max:300',
         'produto_id'    =>'required|integer',
         'fornecedor_id'  =>'required|integer',
         'id'                    =>$params?'required|integer':''

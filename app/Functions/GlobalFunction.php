@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Forncedor;
+use App\Models\Admin\Produto;
 
 /**
  * Verifica se a varias esta vazio
@@ -86,6 +87,11 @@ function getDados($oque)
        case 'fornecedores':
          $result_query  = Forncedor::orderBy('name','asc')->
                            where('status','1')->get();
+        break;
+        case 'produtos':
+            $result_query  = Produto::orderBy('name','asc')->
+                            where('status','1')->get();
+                                              
        break;
        
    }

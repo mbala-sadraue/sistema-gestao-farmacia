@@ -15,7 +15,7 @@
 
         </div>
         <div id="box-button">
-            <a href="/admin/item/create">
+            <a href="/admin/itens/create">
                 <button type="button" class="btn btn-primary" id="btn-add">
                     <i class="bi bi-plus-lg me-1"></i>adicionar
                 </button>
