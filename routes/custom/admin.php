@@ -25,8 +25,9 @@ Route::middleware('auth','role:administrador')->prefix('admin')->group(function(
     Route::get("/", [DashboardController::class,'index'])->name('admin.dashboard');
     
     Route::resource('produto',ProdutoController::class);
-    Route::resource('itens',ItensController::class);
     Route::resource('fornecedor',FornecedorController::class);
+    Route::resource('itens',ItensController::class);
+    Route::get('/itens/detail/$id',[Itens::class,'detailsItem'])->name('itens.detail');
     // Rota do usuario 
     Route::resource('user',UserController::class);
 });
