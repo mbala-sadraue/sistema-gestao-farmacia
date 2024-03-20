@@ -61,7 +61,7 @@
                         <tbody>
                             @foreach ($itens as $item)
                                 <tr>
-                                    <td>{{ $item->codproduto }}</td>
+                                    <td>{{ $item->codProduto }}</td>
                                     <td>{{ $item->produto_id }}</td>
                                     <td>{{ $item->quantCompra }}</td>
                                     <td>{{ $item->quantVendido }}</td>
@@ -80,7 +80,7 @@
                                     <td class="">
                                         <a href="#"><button
                                                 class="btn-accoes"><i class="ri-eye-fill"></i></button></a>
-                                        <a href="/admin/itens/{{ $item->id }}/edit">
+                                        <a href="#">
                                             <button class="btn-accoes"><i class="ri-edit-box-line"></i></button></a>
                                         <button class="btn-accoes BtnDeleteTrue" data-bs-toggle="modal"
                                             data-bs-target="#verticalycentered" value="{{ $item->id }}"
