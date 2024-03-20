@@ -78,8 +78,11 @@
 
                                     </td>
                                     <td class="">
-                                        <a href="#"><button
-                                                class="btn-accoes"><i class="ri-eye-fill"></i></button></a>
+                                        <a href="/admin/itens/detail/{{$item->id}}">
+                                            <button
+                                                class="btn-accoes"><i class="ri-eye-fill"></i>
+                                            </button>
+                                        </a>
                                         <a href="#">
                                             <button class="btn-accoes"><i class="ri-edit-box-line"></i></button></a>
                                         <button class="btn-accoes BtnDeleteTrue" data-bs-toggle="modal"
