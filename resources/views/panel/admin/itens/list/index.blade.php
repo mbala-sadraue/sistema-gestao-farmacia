@@ -68,7 +68,7 @@
                                     <td>{{ $item->quantEstoque }}</td>
                                     <td>{{ $item->precoCompra }}</td>
                                     <td>{{ $item->precoVenda }}</td>
-                                    <td>{{ $item->fornecedor_id }}</td>
+                                    <td>{{ $item->fornecedor->name }}</td>
                                     <td>
                                         @if( $item->status )
                                         <i class="bi bi-circle-fill Status-active"></i>

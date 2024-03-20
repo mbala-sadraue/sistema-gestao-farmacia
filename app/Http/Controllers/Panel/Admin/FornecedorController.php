@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Panel\Admin;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Admin\Forncedor;
+use App\Models\Admin\Fornecedor;
 
 class FornecedorController extends Controller
 {
@@ -13,7 +13,7 @@ class FornecedorController extends Controller
 
     var $fornecedor = null; 
 
-    public function __construct(Forncedor $fornecedor){
+    public function __construct(Fornecedor $fornecedor){
         
         $this->fornecedor = $fornecedor;
     }
@@ -23,7 +23,7 @@ class FornecedorController extends Controller
     public function index()
     {
         try{
-            $fornecedores = Forncedor::orderBy('name','asc');
+            $fornecedores = Fornecedor::orderBy('name','asc');
             $sizePaginete = 5;
     
     

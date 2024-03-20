@@ -30,4 +30,8 @@ class Itens extends Model
     public function produto(){
         return $this->belongsTo( Produto::class,'produto_id');
     }
+
+    public function fornecedor(){
+        return $this->belongsTo(Fornecedor::class,'fornecedor_id');
+    }
 }
