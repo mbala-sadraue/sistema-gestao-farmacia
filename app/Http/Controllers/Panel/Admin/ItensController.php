@@ -4,9 +4,17 @@ namespace App\Http\Controllers\Panel\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Admin\Itens;
 
 class ItensController extends Controller
 {
+
+    var $item = null; 
+
+    public function __construct(Itens $item){
+        
+        $this->item = $item;
+    }
     /**
      * Display a listing of the resource.
      */
