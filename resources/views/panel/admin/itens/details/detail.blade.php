@@ -1,19 +1,17 @@
-@extends('templates.layout.pedagogico.layout')
+@extends("templates.painel.admin.admin-master.admin-layout")
 
-@section('headTitle',$curso->nome )
-@section('deleteConfirmTitite','Classe')
-@section('urlDelete','/pedagogico/ano-escolar/')
+@section('headTitle',$item->produto->nome )
 
 <!----CONTENT ADMIN------>
-@section('content-two')
+@section('content-admin')
   <div class="pagetitle">
       <div> 
-        <h1>{{ $curso->nome }}</h1>
+        <h1>{{ $item->produto->nome }}</h1>
         <nav>
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/pedagogico/dashboard">Home</a></li>
             <li class="breadcrumb-item"><a href="/pedagogico/curso">Curso</a></li>
-             <li class="breadcrumb-item active">{{ $curso->nome }}</li>
+             <li class="breadcrumb-item active">{{ $item->produto->nome }}</li>
           </ol>
         </nav>
 
@@ -23,7 +21,7 @@
    
     <section class="section dashboard section_detalhes" id="section_detalhes">
        <div> 
-          @include('templates.layout.componentes.alert.alert')
+          @include('templates.painel.componentes.alert.alert')
       </div>
       <div class="card">
         <div class="card-body px-3 py-2">
@@ -33,64 +31,64 @@
                   <button class="nav-link" id="curso-tab" data-bs-toggle="tab" data-bs-target="#curso" type="button" role="tab" aria-controls="curso" aria-selected="false">Curso</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="anoEscolar-tab" data-bs-toggle="tab" data-bs-target="#anoEscolar" type="button" role="tab" aria-controls="classe" aria-selected="true">Classes</button>
+                  <button class="nav-link active" id="iten-tab" data-bs-toggle="tab" data-bs-target="#iten" type="button" role="tab" aria-controls="classe" aria-selected="true">Classes</button>
                 </li>
                 <li class="nav-item" role="presentation">
                   <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
                 </li>
               </ul>
               <div id="box-button" >
-                 <a href="#" class="d-none" id="buttonAddAnoEscolar">
+                 <a href="#" class="d-none" id="buttonAdditen">
                   <button type="button" class="btn btn-primary " id="btn-add"  data-bs-toggle="modal" data-bs-target="#modalAddClasse">
                     <i class="bi bi-plus-lg me-1"></i>adicionar
                   </button></a>
                </div>
             </div>
             <div class="tab-content" id="myTabContent">
-              <div class="tab-pane fade show active" id="anoEscolar" role="tabpanel" aria-labelledby="anoEscolar-tab">
+              <div class="tab-pane fade show active" id="iten" role="tabpanel" aria-labelledby="iten-tab">
                 <div class="bg-white p-3 py-5">
                   <table class="table tableList">
                     <thead>
                       <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Cliclo</th>
+                        <th scope="col">Proudto</th>
+                        <th scope="col">Fornecedor</th>
                         <th scope="col">Status</th>
                         <th scope="col"> Acções</th>
                       </tr>
                     </thead>
-                     @if(isset($anoEscolares) && $anoEscolares != null )
+               
                     <tbody>
-                      @foreach($anoEscolares as $anoEscolar)
+                      <!-- foreach($itens as $item) -->
                       <tr>
-                        <td>{{ $anoEscolar->nome }}</td>
-                        <td>{{ $anoEscolar->ciclo }}</td>
+                        <td>{{$item->produto->name }}</td>
+                        <td>{{ $item->fornecedor->name }}</td>
                         <td>
-                            @if( $anoEscolar->status)
+                            @if( $item->status)
                               <i class="bi bi-circle-fill Status-active"></i>
                             @else
                               <i class="bi bi-circle-fill Status-not-active"></i>
                             @endif
 
                          </td>
-                        <td class="">
-                          <a href="/pedagogico/ano-escolar/detail/{{ $anoEscolar->id }}">
+                        <td class="">iten
+                          <a href="/pedagogico/ano-escolar/detail/{{ $item->id }}">
                           <button class="btn-accoes">
                             <i class="ri-eye-fill"></i>
                           </button>
                         </a>
 
-                          <a href="/pedagogico/ano-escolar/{{ $anoEscolar->id }}/edit">
+                          <a href="/pedagogico/ano-escolar/{{ $item->id }}/edit">
                             <button class="btn-accoes"><i class="ri-edit-box-line"></i></button></a>
-                          <button class="btn-accoes BtnDeleteTrue" data-bs-toggle="modal" data-bs-target="#verticalycentered"  value="{{ $anoEscolar->id }}"  data-dt-url="/pedagogico/ano-escolar/" data-dt-titte="Classe">
+                          <button class="btn-accoes BtnDeleteTrue" data-bs-toggle="modal" data-bs-target="#verticalycentered"  value="{{ $item->id }}"  data-dt-url="/pedagogico/ano-escolar/" data-dt-titte="Classe">
                             <i class="bi bi-x-circle-fill"></i>
                           </button>
                         </td>
                       </tr>
-                      @endforeach
+                      <!-- endforeach -->
                     </tbody>
-                    @endif
+                    <!-- endif -->
                   </table>
-                  {{ $anoEscolares->links("vendor.pagination.my-pagination") }}
+                  <!--  $itens->links("vendor.pagination.my-pagination") -->
                 </div>
               </div>
               <div class="tab-pane fade" id="curso" role="tabpanel" aria-labelledby="curso-tab">
@@ -98,7 +96,7 @@
                   <table class="table table-bordered tableDetalhe" id="">
                     <tr>
                       <th scope="col" class="col-md-2">Curso</th>
-                      <td>{{ $curso->nome }}</td>
+                      <td>{{ $item->produto->name }}</td>
                     </tr>
                     <tr>
                       <th scope="col" class="col-md-2">Coordenador</th>
@@ -106,7 +104,7 @@
                     </tr>
                     <tr>
                       <th scope="col" class="col-md-2">Classes</th>
-                      <td>{{ $anoEscolares->count()}}</td>
+                      <td>{{ $item->count()}}</td>
                     </tr>
                   </table>
                 </div>
@@ -135,7 +133,7 @@
                       <div class="modal-body">
                          <div class="col-md-12">
                           <label for="validationCustom01" class="form-label">Curso</label>
-                          <input type="text" name="curso" value="{{$curso->nome}}" class="form-control" id="validationCustom01" title="Digite o Nome" disabled>
+                          <input type="text" name="curso" value="{{$item->produto->nome}}" class="form-control" id="validationCustom01" title="Digite o Nome" disabled>
                           <div class="valid-feedback">
                             Esta bom!
                           </div>
@@ -160,7 +158,7 @@
                         </div>
                       </div>
                       <div class="">
-                        <input type="hidden" name="cursos_id" value="{{$curso->id}}"  id="validationCustom01" class="" >
+                        <input type="hidden" name="cursos_id" value="{{$item->id}}"  id="validationCustom01" class="" >
                       </div>
                       <div class="modal-footer">
                         <div class="col-12">
