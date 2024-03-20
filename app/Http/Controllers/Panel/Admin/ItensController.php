@@ -20,7 +20,39 @@ class ItensController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $itens = Itens::orderBy('name','asc');
+            $sizePaginete = 5;
+    
+    
+            if(request("size"))
+            {
+                $sizePaginete = isCorretoSizePaginate(request("size"));
+    
+            }
+    
+            if(request('codproduto') && !isNullOrEmpty(request('codproduto')))
+            {
+                $itens = searchByField($itens,"codproduto",request('codproduto'));
+            }
+            if(request('produto_id') && !isNullOrEmpty(request('produto_id')))
+            {
+                $itens = searchByField($itens,"produto_id",request('produto_id'),true);
+            }
+            if(request('status') && !isNullOrEmpty(request('status')))
+            {
+                $itens = searchByField($itens,"status",request('status'));
+            }
+
+            $itens  = $itens->paginate($sizePaginete);
+    
+            return view('panel.admin.itens.list.index',compact('itens'));
+            
+    
+        }catch(Exception $e)
+        {
+            return redirectError('admin/itens',  $e->getMessage());
+        }
     }
 
     /**
