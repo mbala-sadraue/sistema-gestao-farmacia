@@ -62,7 +62,7 @@
                             @foreach ($itens as $item)
                                 <tr>
                                     <td>{{ $item->codProduto }}</td>
-                                    <td>{{ $item->produto_id }}</td>
+                                    <td>{{ $item->produto->name }}</td>
                                     <td>{{ $item->quantCompra }}</td>
                                     <td>{{ $item->quantVendido }}</td>
                                     <td>{{ $item->quantEstoque }}</td>

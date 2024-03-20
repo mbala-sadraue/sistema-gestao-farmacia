@@ -26,4 +26,8 @@ class Itens extends Model
          'fornecedor_id',
          'status',
      ];
+
+    public function produto(){
+        return $this->belongsTo( Produto::class,'produto_id');
+    }
 }
