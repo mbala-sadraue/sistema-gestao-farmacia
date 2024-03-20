@@ -140,8 +140,6 @@ class ProdutoController extends Controller
     public function update(Request $request, string $id)
     {
         try{
-            // dd($request);
-      
             $status = '1';
 
             $ipuntValidatorInput = $this->validatorInput($request,false);
