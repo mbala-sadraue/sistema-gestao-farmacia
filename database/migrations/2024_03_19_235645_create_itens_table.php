@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("precoVenda");
             $table->string("precoCompra");
             $table->string("quantEstoque");
+            $table->string("quantCompra");
             $table->string("quantVendido");
             $table->unsignedBigInteger("fornecedor_id");
             $table->unsignedBigInteger("produto_id");

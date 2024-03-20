@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Itens extends Model
 {
     use HasFactory;
-    protected $table = 'tens';
+    protected $table = 'itens';
 
     /**
       * The attributes that are mass assignable.
@@ -22,6 +22,7 @@ class Itens extends Model
          'precoCompra',
          'quantEstoque',
          'quantVendido',
+         'quantCompra',
          'fornecedor_id',
          'status',
      ];

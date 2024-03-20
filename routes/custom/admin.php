@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Panel\Admin\UserController;
+use App\Http\Controllers\Panel\Admin\ItensController;
 use App\Http\Controllers\Panel\Admin\ProdutoController;
 use App\Http\Controllers\Panel\Admin\DashboardController;
 use App\Http\Controllers\Panel\Admin\FornecedorController;
@@ -24,7 +25,7 @@ Route::middleware('auth','role:administrador')->prefix('admin')->group(function(
     Route::get("/", [DashboardController::class,'index'])->name('admin.dashboard');
     
     Route::resource('produto',ProdutoController::class);
-    Route::resource('itens',ProdutoController::class);
+    Route::resource('itens',ItensController::class);
     Route::resource('fornecedor',FornecedorController::class);
     // Rota do usuario 
     Route::resource('user',UserController::class);

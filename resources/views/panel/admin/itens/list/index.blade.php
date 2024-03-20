@@ -1,21 +1,21 @@
 @extends("templates.painel.admin.admin-master.admin-layout")
 
-@section('headTitle','Produtos')
+@section('headTitle','Itens')
 
 @section('content-admin')
 <div class="pagetitle">
         <div>
-            <h1>Produtos</h1>
+            <h1>Itens</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Produtos</li>
+                    <li class="breadcrumb-item active">Itens</li>
                 </ol>
             </nav>
 
         </div>
         <div id="box-button">
-            <a href="/admin/produto/create">
+            <a href="/admin/item/create">
                 <button type="button" class="btn btn-primary" id="btn-add">
                     <i class="bi bi-plus-lg me-1"></i>adicionar
                 </button>
@@ -45,20 +45,32 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Descrição</th>
+                            <th scope="col">Cod.Produto</th>
+                            <th scope="col">Produto</th>
+                            <th scope="col">Quant. Compra</th>
+                            <th scope="col">Quant.Venda</th>
+                            <th scope="col">Quant.Estoque</th>
+                            <th scope="col">v.Compra</th>
+                            <th scope="col">v.Venda</th>
+                            <th scope="col">Forncedor</th>
                             <th scope="col">Status</th>
                             <th scope="col"> Acções</th>
                         </tr>
                     </thead>
-                    @if (isset($produtos) && $produtos != null)
+                    @if (isset($itens) && $itens != null)
                         <tbody>
-                            @foreach ($produtos as $produto)
+                            @foreach ($itens as $item)
                                 <tr>
-                                    <td>{{ $produto->name }}</td>
-                                    <td>{{ $produto->description }}</td>
+                                    <td>{{ $item->codproduto }}</td>
+                                    <td>{{ $item->produto_id }}</td>
+                                    <td>{{ $item->quantCompra }}</td>
+                                    <td>{{ $item->quantVendido }}</td>
+                                    <td>{{ $item->quantEstoque }}</td>
+                                    <td>{{ $item->precoCompra }}</td>
+                                    <td>{{ $item->precoVenda }}</td>
+                                    <td>{{ $item->fornecedor_id }}</td>
                                     <td>
-                                        @if( $produto->status )
+                                        @if( $item->status )
                                         <i class="bi bi-circle-fill Status-active"></i>
                                         @else
                                         <i class="bi bi-circle-fill Status-not-active"></i>
@@ -68,11 +80,11 @@
                                     <td class="">
                                         <a href="#"><button
                                                 class="btn-accoes"><i class="ri-eye-fill"></i></button></a>
-                                        <a href="/admin/produto/{{ $produto->id }}/edit">
+                                        <a href="/admin/itens/{{ $item->id }}/edit">
                                             <button class="btn-accoes"><i class="ri-edit-box-line"></i></button></a>
                                         <button class="btn-accoes BtnDeleteTrue" data-bs-toggle="modal"
-                                            data-bs-target="#verticalycentered" value="{{ $produto->id }}"
-                                            data-dt-url="/admin/produto/" data-dt-titte="produto">
+                                            data-bs-target="#verticalycentered" value="{{ $item->id }}"
+                                            data-dt-url="/admin/itens/" data-dt-titte="item">
                                             <i class="bi bi-x-circle-fill"></i>
                                         </button>
                                     </td>
@@ -81,7 +93,7 @@
                         </tbody>
                     @endif
                 </table>
-                {{$produtos->links("vendor.pagination.my-pagination")}}
+                {{$itens->links("vendor.pagination.my-pagination")}}
             </div>
         </div>
     </section>
