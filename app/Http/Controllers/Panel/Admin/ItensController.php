@@ -125,7 +125,22 @@ class ItensController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        try{
+            $item     = $this->item->find($id);
+
+             if(!isset($item->id) || $item == null)
+             {
+               $response =  ['status'=>false,'messages'=>"itens não encontrado."];
+               session()->flash('status',$response);
+               return redirect()->back();;
+             }
+      
+             $typeForm = "edit";
+            return view('panel.admin.itens.form.form',compact("typeForm",'item'));
+          }catch(Exception $e)
+          {
+            return redirectError('/admin/itens',  $e->getMessage());
+          }
     }
 
     /**
