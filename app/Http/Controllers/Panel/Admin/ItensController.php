@@ -60,7 +60,14 @@ class ItensController extends Controller
      */
     public function create()
     {
-        //
+        try {
+
+            $typeForm = 'create';
+             return view('panel.admin.itens.form.form',compact('typeForm'));
+ 
+         } catch (Exception $th) {
+             return redirectError('admin/itens',  $e->getMessage());
+         }
     }
 
     /**
