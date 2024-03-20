@@ -75,7 +75,41 @@ class ItensController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+      
+            $status = '1';
+            $ipuntValidatorInput = $this->validatorInput($request,false);
+               if(!$ipuntValidatorInput){
+                return redirect()->back();
+               }
+               
+               $item  = $this->item;
+
+               $data    = $item->create([
+                    'codproduto'    =>  $request->codproduto,
+                    'produto_id'    =>  $request->produto_id,
+                    'precoVenda'    =>  $request->precoVenda,
+                    'precoCompra'   =>  $request->precoCompra,
+                    'quantEstoque'  =>  $request->quantEstoque,
+                    'quantVendido'  =>  $request->quantVendido,
+                    'fornecedor_id' =>  $request->fornecedor_id,
+                    'status'        =>  $status,
+               ]);
+
+               if($data)
+               {
+                  $response =  ['status'=>true,'messages'=>"Itens <b>$data->codProduto</b> cadastrado com sucesso","data"=>$data];
+               }else
+               {
+                  $response =  ['status'=>true,'messages'=>"Erro ao cadastrar Itens"];
+               }
+      
+               session()->flash('status',$response);
+               return redirect("admin/itens");
+          }catch(Exception $e)
+          {
+            return redirectError('admin/itens',  $e->getMessage());
+          }
     }
 
     /**
