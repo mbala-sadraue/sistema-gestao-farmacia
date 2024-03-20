@@ -5,15 +5,16 @@ namespace App\Http\Controllers\Panel\Admin;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Admin\Produto;
-class ProdutoController extends Controller
+use App\Models\Admin\Itens;
+
+class ItensController extends Controller
 {
 
-    var $produto = null; 
+    var $item = null; 
 
-    public function __construct(Produto $produto){
+    public function __construct(Itens $item){
         
-        $this->produto = $produto;
+        $this->item = $item;
     }
     /**
      * Display a listing of the resource.
@@ -21,7 +22,7 @@ class ProdutoController extends Controller
     public function index()
     {
         try{
-            $produtos = Produto::orderBy('name','asc');
+            $itens = Itens::where('id','>',0);
             $sizePaginete = 5;
     
     
@@ -31,23 +32,27 @@ class ProdutoController extends Controller
     
             }
     
-            if(request('name') && !isNullOrEmpty(request('name')))
+            if(request('codProduto') && !isNullOrEmpty(request('codProduto')))
             {
-                $produtos = searchByField($produtos,"name",request('name'));
+                $itens = searchByField($itens,"codProduto",request('codProduto'));
             }
-            if(request('description') && !isNullOrEmpty(request('description')))
+            if(request('produto_id') && !isNullOrEmpty(request('produto_id')))
             {
-                $produtos = searchByField($produtos,"description",request('description'));
+                $itens = searchByField($itens,"produto_id",request('produto_id'),true);
+            }
+            if(request('status') && !isNullOrEmpty(request('status')))
+            {
+                $itens = searchByField($itens,"status",request('status'));
             }
 
-            $produtos  = $produtos->paginate($sizePaginete);
+            $itens  = $itens->paginate($sizePaginete);
     
-            return view('panel.admin.produtos.list.index',compact('produtos'));
+            return view('panel.admin.itens.list.index',compact('itens'));
             
     
         }catch(Exception $e)
         {
-            return redirectError('admin/produto',  $e->getMessage());
+            return redirectError('admin/itens',  $e->getMessage());
         }
     }
 
@@ -57,12 +62,14 @@ class ProdutoController extends Controller
     public function create()
     {
         try {
+        //    $produtos =  getDados('produtos');
+        //    dd(count($produtos));
 
             $typeForm = 'create';
-             return view('panel.admin.produtos.form.form',compact('typeForm'));
+             return view('panel.admin.itens.form.form',compact('typeForm'));
  
          } catch (Exception $th) {
-             return redirectError('admin/produto',  $e->getMessage());
+             return redirectError('admin/itens',  $e->getMessage());
          }
     }
 
@@ -79,27 +86,33 @@ class ProdutoController extends Controller
                 return redirect()->back();
                }
                
-               $produto  = $this->produto;
+               $item  = $this->item;
 
-               $data    = $produto->create([
-                    'name'          =>  $request->name,
+               $data    = $item->create([
+                    'codProduto'    =>  $request->codProduto,
+                    'produto_id'    =>  $request->produto_id,
+                    'precoVenda'    =>  $request->precoVenda,
+                    'precoCompra'   =>  $request->precoCompra,
+                    'quantCompra'   =>  $request->quantCompra,
+                    'quantEstoque'  =>  $request->quantCompra,
+                    'quantVendido'  =>  0,
+                    'fornecedor_id' =>  $request->fornecedor_id,
                     'status'        =>  $status,
-                    'description'   =>  $request->description,
                ]);
 
                if($data)
                {
-                  $response =  ['status'=>true,'messages'=>"produto <b>$data->name</b> cadastrado com sucesso","data"=>$data];
+                  $response =  ['status'=>true,'messages'=>"Itens <b>$data->codProduto</b> cadastrado com sucesso","data"=>$data];
                }else
                {
-                  $response =  ['status'=>true,'messages'=>"Erro ao cadastrar o produto "];
+                  $response =  ['status'=>true,'messages'=>"Erro ao cadastrar Itens"];
                }
       
                session()->flash('status',$response);
-               return redirect("admin/produto");
+               return redirect("admin/itens");
           }catch(Exception $e)
           {
-            return redirectError('admin/produto',  $e->getMessage());
+            return redirectError('admin/itens',  $e->getMessage());
           }
     }
 
@@ -117,20 +130,20 @@ class ProdutoController extends Controller
     public function edit(string $id)
     {
         try{
-            $produto     = $this->produto->find($id);
+            $item     = $this->item->find($id);
 
-             if(!isset($produto->id) || $produto == null)
+             if(!isset($item->id) || $item == null)
              {
-               $response =  ['status'=>false,'messages'=>"produto não encontrado."];
+               $response =  ['status'=>false,'messages'=>"itens não encontrado."];
                session()->flash('status',$response);
                return redirect()->back();;
              }
       
              $typeForm = "edit";
-            return view('panel.admin.produtos.form.form',compact("typeForm",'produto'));
+            return view('panel.admin.itens.form.form',compact("typeForm",'item'));
           }catch(Exception $e)
           {
-            return redirectError('/admin/produto',  $e->getMessage());
+            return redirectError('/admin/itens',  $e->getMessage());
           }
     }
 
@@ -147,10 +160,10 @@ class ProdutoController extends Controller
             return redirect()->back();
             }
 
-            $produto  = $this->produto->find($request->id);
-            if(!isset($produto->id) || $produto == null)
+            $item  = $this->item->find($request->id);
+            if(!isset($item->id) || $item == null)
              {
-               $response =  ['status'=>false,'messages'=>"produto não encontrado."];
+               $response =  ['status'=>false,'messages'=>"Item não encontrado."];
                session()->flash('status',$response);
                return redirect()->back();
              }
@@ -160,10 +173,16 @@ class ProdutoController extends Controller
                 $status = "0";
              }
 
-            $data    = $produto->update([
-                'name'          =>  $request->name,
+            $data    = $item->update([
+                'codProduto'    =>  $request->codProduto,
+                'produto_id'    =>  $request->produto_id,
+                'precoVenda'    =>  $request->precoVenda,
+                'precoCompra'   =>  $request->precoCompra,
+                'quantEstoque'  =>  $request->quantEstoque,
+                'quantCompra'   =>  $request->quantCompra,
+                'quantVendido'  =>  $request->quantVendido,
+                'fornecedor_id' =>  $request->fornecedor_id,
                 'status'        =>  $status,
-                'description'   =>  $request->description,
             ]);
 
             if($data)
@@ -175,9 +194,9 @@ class ProdutoController extends Controller
             }
     
             session()->flash('status',$response);
-            return redirect("/admin/produto");
+            return redirect("/admin/itens");
         }catch(Exception $e){
-            return redirectError('/admin/produto',  $e->getMessage());
+            return redirectError('/admin/itens',  $e->getMessage());
         }
     }
 
@@ -204,14 +223,14 @@ class ProdutoController extends Controller
                 return redirect()->back();
             }
    
-            $produto     = $this->produto->find($id);
-            if(!isset($produto->id) || $produto == null)
+            $item     = $this->item->find($id);
+            if(!isset($item->id) || $item == null)
              {
                $response =  ['statud'=>false,'messages'=>"O produto não encontrado."];
                session()->flash('statud',$response);
                return redirect()->back();
              }
-            $delete    = $produto->delete();
+            $delete    = $item->delete();
    
             if($delete)
             {
@@ -224,17 +243,20 @@ class ProdutoController extends Controller
            return redirect()->back();
        }catch(Exception $e)
        {
-            return redirectError('/admin/produto',  $e->getMessage());
+            return redirectError('/admin/itens',  $e->getMessage());
        } 
-       
     }
 
     // VALIDA OS COMPOS Obrigatorio
     private function validatorInput($request,$params = false,$admin = false)
     {
     $validator = Validator::make($request->all(),[
-        'name'                  =>'required|max:100',
-        'description'                  =>'required|max:300',
+        'codProduto'    =>'required|max:100',
+        'precoVenda'    =>'required|max:300',
+        'precoCompra'    =>'required|max:100',
+        'quantCompra'    =>'required|max:300',
+        'produto_id'    =>'required|integer',
+        'fornecedor_id'  =>'required|integer',
         'id'                    =>$params?'required|integer':''
         ]);
 
