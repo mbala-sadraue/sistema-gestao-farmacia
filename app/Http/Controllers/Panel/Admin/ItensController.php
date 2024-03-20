@@ -241,4 +241,37 @@ class ItensController extends Controller
             return redirectError('/admin/itens',  $e->getMessage());
        } 
     }
+
+    // VALIDA OS COMPOS Obrigatorio
+    private function validatorInput($request,$params = false,$admin = false)
+    {
+    $validator = Validator::make($request->all(),[
+        'codproduto'    =>'required|max:100',
+        'precoVenda'    =>'required|max:300',
+        'produto_id'    =>'required|integer',
+        'fornecedor_id'  =>'required|integer',
+        'id'                    =>$params?'required|integer':''
+        ]);
+
+        if($validator->fails()){
+        $msg= "Todos os campos são obrigatorio<br/>";
+        foreach($validator->errors()->all() as $error){
+            $msg = $msg." $error <br/>";
+        }
+        $response =  ['status'=>false,'messages'=>$msg];
+
+            session()->flash('status',$response);
+
+            return false;
+        }
+        return true;
+
+    }
+    
+    private function redirectError($route, $message){
+        $msg        = $message;
+        $response   =  ['status'=>false,'messages'=>"o correu um erro, contacte o administrador! ".$msg];
+        session()->flash('status',$response);
+        return redirect("$route");
+    }
 }
