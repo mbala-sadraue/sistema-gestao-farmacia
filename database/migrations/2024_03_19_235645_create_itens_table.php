@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string("codProduto");
             $table->string("precoVenda");
             $table->string("precoCompra");
-            $table->string("quantEstoque");
-            $table->string("quantCompra");
-            $table->string("quantVendido");
+            $table->integer("quantEstoque");
+            $table->integer("quantCompra");
+            $table->integer("quantVendido");
             $table->unsignedBigInteger("fornecedor_id");
             $table->unsignedBigInteger("produto_id");
             $table->foreign('fornecedor_id')->references('id')->on('fornecedores')->onUpdate('cascade')->onDelete('cascade');
