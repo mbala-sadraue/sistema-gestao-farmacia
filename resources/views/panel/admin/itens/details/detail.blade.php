@@ -21,9 +21,52 @@
 
 <section class="section dashboard section_detalhes" id="section_detalhes">
 
-  <div class="card bg-white py-5">
+  <div class="card bg-white py-3">
     <div class="card-body ">
-      <h1>Produto</h1>
+      <div class="container-fluid">
+        <div class="row">
+           <div class="col-md-6">
+            <table class="table table-bordered tableDetalhe" id="">
+              <tr>
+                <th scope="col" class="col-md-2">Cod.Produto</th>
+                <td>{{ $item->codProduto }}</td>
+              </tr>
+              <tr>
+                <th scope="col" class="col-md-2">Produto</th>
+                <td>{{ $item->produto->name }}</td>
+              </tr>
+              <tr>
+                <th scope="col" class="col-md-2">Descrição</th>
+                <td> {{  $item->produto->description }}</td>
+              </tr>
+              <tr>
+                <th scope="col" class="col-md-2">Fornecedor</th>
+                <td>{{ $item->fornecedor->name}}</td>
+              </tr>
+            </table>
+           </div>
+           <div class="col-md-6">
+            <table class="table table-bordered tableDetalhe" id="">
+              <tr>
+                <th scope="col" class="col-md-2 pl-1">Preço</th>
+                <td>{{ $item->precoCompra }}</td>
+              </tr>
+              <tr>
+                <th scope="col" class="col-md-2">Produto</th>
+                <td>{{ $item->precoVenda }}</td>
+              </tr>
+              <tr>
+                <th scope="col" class="col-md-2">Estoque A.</th>
+                <td> {{ $item->quantEstoque}}</td>
+              </tr>
+              <tr>
+                <th scope="col" class="col-md-2">Fornecedor</th>
+                <td>{{ $item->fornecedor->name}}</td>
+              </tr>
+            </table>
+           </div>
+        </div>
+      </div>
     </div>
   </div>
   <div>
