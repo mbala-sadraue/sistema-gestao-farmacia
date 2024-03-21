@@ -20,6 +20,8 @@
 
    
     <section class="section dashboard section_detalhes" id="section_detalhes">
+
+    
        <div> 
           @include('templates.painel.componentes.alert.alert')
       </div>
@@ -31,7 +33,7 @@
                   <button class="nav-link" id="curso-tab" data-bs-toggle="tab" data-bs-target="#curso" type="button" role="tab" aria-controls="curso" aria-selected="false">Curso</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="iten-tab" data-bs-toggle="tab" data-bs-target="#iten" type="button" role="tab" aria-controls="classe" aria-selected="true">Classes</button>
+                  <button class="nav-link active" id="estoque-tab" data-bs-toggle="tab" data-bs-target="#estoque" type="button" role="tab" aria-controls="classe" aria-selected="true">Estoque</button>
                 </li>
                 <li class="nav-item" role="presentation">
                   <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
@@ -45,8 +47,12 @@
                </div>
             </div>
             <div class="tab-content" id="myTabContent">
-              <div class="tab-pane fade show active" id="iten" role="tabpanel" aria-labelledby="iten-tab">
-                <div class="bg-white p-3 py-5">
+              <div class="tab-pane fade show active" id="estoque" role="tabpanel" aria-labelledby="estoque-tab">
+                <div class="bg-white p-3 pb-5">
+                  <div class="main_bottom">
+                        <button type="button">Lula</button>
+                  </div>
+
                   <table class="table tableList">
                     <thead>
                       <tr>
@@ -56,7 +62,6 @@
                         <th scope="col"> Acções</th>
                       </tr>
                     </thead>
-               
                     <tbody>
                       <!-- foreach($itens as $item) -->
                       <tr>
