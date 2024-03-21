@@ -247,6 +247,50 @@ class ItensController extends Controller
        } 
     }
 
+    public function addProduto(Request $request){
+        try{
+      
+            $status = '1';
+            $ipuntValidatorInput = $this->validatorInput($request,false);
+               if(!$ipuntValidatorInput){
+                return redirect()->back();
+               }
+               $item     = $this->item->find($id);
+               if(!isset($item->id) || $item == null)
+                {
+                  $response =  ['status'=>false,'messages'=>"O produto não encontrado."];
+                  session()->flash('status',$response);
+                  return redirect()->back();
+                }
+
+              
+                $newEstoque = $item->quantEstoque + $request->quantCompra;
+                $data    = $item->update([
+                    'precoVenda'    =>  $request->precoVenda,
+                    'precoCompra'   =>  $request->precoCompra,
+                    'quantCompra'   =>  $request->quantCompra,
+                    'quantEstoque'  =>  $newEstoque,
+                    'fornecedor_id' =>  $request->fornecedor_id,
+                    'quantEstoque'  =>  $request->quantEstoque,
+                    'status'        =>  $status,
+               ]);
+
+               if($data)
+               {
+                  $response =  ['status'=>true,'messages'=>"Itens <b>$data->codProduto</b> cadastrado com sucesso","data"=>$data];
+               }else
+               {
+                  $response =  ['status'=>true,'messages'=>"Erro ao cadastrar Itens"];
+               }
+      
+               session()->flash('status',$response);
+               return redirect("admin/itens");
+          }catch(Exception $e)
+          {
+            return redirectError('admin/itens',  $e->getMessage());
+          }
+    }
+
     // DETALHES DE ITENS
 
     public function detailsItem($id){
