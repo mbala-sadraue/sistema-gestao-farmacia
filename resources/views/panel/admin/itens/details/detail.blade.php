@@ -131,7 +131,7 @@
       </div>
 
       <!-- Vertical Form -->
-      <form class=" g-3 needs-validation" novalidate method="post" action="/pedagogico/ano-escolar">
+      <form class=" g-3 needs-validation" novalidate method="post" action="{{route('intes.addnewestoque')}}">
         @csrf
         <div class="modal-body">
           <div class="col-md-12">
@@ -143,8 +143,8 @@
           <div class="row">
             <div class="col-md-12">
               <label for="validatequantidade" class="form-label">Quantidade</label>
-              <input type="number" name="quantCompra" class="form-control" id="validatequantidade"
-                value="" title="Digite o Quantidade" min="1" required>
+              <input type="number" name="quantCompra" class="form-control" id="validatequantidade" value=""
+                title="Digite o Quantidade" min="1" required>
               <div class="invalid-feedback">
                 Quantidade é obrigatório!
               </div>
@@ -153,6 +153,14 @@
 
           <div class="row">
             <div class="col-md-6 pr-1">
+              <label for="validateValorCompra" class="form-label">Valor de compra</label>
+              <input type="text" name="precoCompra" class="form-control" id="validateValorCompra"
+                value="{{$item->precoCompra}}" title="Digite o Valor de compra" required>
+              <div class="invalid-feedback">
+                Valor de compra é obrigatório!
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
               <label for="validateValorVenda" class="form-label">Valor de venda</label>
               <input type="text" name="precoVenda" class="form-control" id="validateValorVenda"
                 value="{{$item->precoVenda}}" title="Digite o Valor de venda" required>
@@ -160,24 +168,23 @@
                 Valor de venda é obrigatório!
               </div>
             </div>
-            <div class="col-md-6 pl-1">
-              <label for="validateValorCompra" class="form-label">Valor de compra</label>
-              <input type="text" name="precoCompra" class="form-control" id="validateValorCompra"
-                value="{{$item->precoCompra}}" title="Digite o Valor de compra" required>
-              <div class="invalid-feedback">
-                Valor de compra é obrigatório!
-              </div>
+
+            <div>
+              <input type="hidden" name="codProduto" value="{{ $item->codProduto}}" />
+              <input type="hidden" name="fornecedor_id" value="{{ $item->fornecedor_id}}" />
+              <input type="hidden" name="produto_id" value="{{ $item->produto_id}}" />
+              <input type="hidden" name="id" value="{{ $item->id}}" />
+            </div>
           </div>
-        </div>
-        <div class="">
-          <input type="hidden" name="item_id" value="{{$item->id}}" id="validationCustom01" class="">
-        </div>
-        <div class="modal-footer">
-          <div class="col-12">
-            <button type="reset" class="btn btn-secondary" id="btn-reset" data-bs-dismiss="modal">cancelar</button>
-            <button type="submit" class="btn btn-primary" id="btn-save">Registar</button>
+          <div class="">
+            <input type="hidden" name="item_id" value="{{$item->id}}" id="validationCustom01" class="">
           </div>
-        </div>
+          <div class="modal-footer">
+            <div class="col-12">
+              <button type="reset" class="btn btn-secondary" id="btn-reset" data-bs-dismiss="modal">cancelar</button>
+              <button type="submit" class="btn btn-primary" id="btn-save">Registar</button>
+            </div>
+          </div>
       </form><!-- Vertical Form -->
     </div>
   </div>

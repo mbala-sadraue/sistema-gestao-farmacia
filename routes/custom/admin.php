@@ -28,6 +28,8 @@ Route::middleware('auth','role:administrador')->prefix('admin')->group(function(
     Route::resource('fornecedor',FornecedorController::class);
     Route::resource('itens',ItensController::class);
     Route::get('/itens/detail/{id}',[ItensController::class,'detailsItem'])->name('itens.detail');
+    Route::post('/itens/update-estoque',[ItensController::class,'addNewEstoque'])->name('intes.addnewestoque');
+
     // Rota do usuario 
     Route::resource('user',UserController::class);
 });

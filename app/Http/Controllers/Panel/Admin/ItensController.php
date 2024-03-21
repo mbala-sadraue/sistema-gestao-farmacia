@@ -247,15 +247,15 @@ class ItensController extends Controller
        } 
     }
 
-    public function addProduto(Request $request){
+    public function addNewEstoque(Request $request){
         try{
       
             $status = '1';
-            $ipuntValidatorInput = $this->validatorInput($request,false);
+            $ipuntValidatorInput = $this->validatorInput($request,true);
                if(!$ipuntValidatorInput){
                 return redirect()->back();
                }
-               $item     = $this->item->find($id);
+               $item     = $this->item->find($request->id);
                if(!isset($item->id) || $item == null)
                 {
                   $response =  ['status'=>false,'messages'=>"O produto não encontrado."];
@@ -271,20 +271,21 @@ class ItensController extends Controller
                     'quantCompra'   =>  $request->quantCompra,
                     'quantEstoque'  =>  $newEstoque,
                     'fornecedor_id' =>  $request->fornecedor_id,
-                    'quantEstoque'  =>  $request->quantEstoque,
+                    'quantEstoque'  =>  $newEstoque,
                     'status'        =>  $status,
                ]);
 
                if($data)
                {
-                  $response =  ['status'=>true,'messages'=>"Itens <b>$data->codProduto</b> cadastrado com sucesso","data"=>$data];
+                $produto = $item->produto->name;
+                  $response =  ['status'=>true,'messages'=>"<b>$produto</b> actualizado com sucesso","data"=>$data];
                }else
                {
                   $response =  ['status'=>true,'messages'=>"Erro ao cadastrar Itens"];
                }
       
                session()->flash('status',$response);
-               return redirect("admin/itens");
+               return redirect()->back();
           }catch(Exception $e)
           {
             return redirectError('admin/itens',  $e->getMessage());
