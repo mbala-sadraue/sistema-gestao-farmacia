@@ -1,0 +1,1 @@
+<h2>Efectua a venda</h2>
