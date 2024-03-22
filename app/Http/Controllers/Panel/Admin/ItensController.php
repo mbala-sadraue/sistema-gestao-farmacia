@@ -216,9 +216,9 @@ class ItensController extends Controller
                foreach($validator->errors()->all() as $error){
                   $msg = $msg." $error <br/>";
                }
-               $response =  ['statud'=>false,'messages'=>$msg];
+               $response =  ['status'=>false,'messages'=>$msg];
    
-                 session()->flash('statud',$response);
+                 session()->flash('status',$response);
    
                 return redirect()->back();
             }
@@ -226,25 +226,104 @@ class ItensController extends Controller
             $item     = $this->item->find($id);
             if(!isset($item->id) || $item == null)
              {
-               $response =  ['statud'=>false,'messages'=>"O produto não encontrado."];
-               session()->flash('statud',$response);
+               $response =  ['status'=>false,'messages'=>"O produto não encontrado."];
+               session()->flash('status',$response);
                return redirect()->back();
              }
             $delete    = $item->delete();
    
             if($delete)
             {
-               $response =  ['statud'=>true,'messages'=>"<b>produto</b> eliminado com sucesso","data"=>$delete];
+               $response =  ['status'=>true,'messages'=>"<b>produto</b> eliminado com sucesso","data"=>$delete];
             }else
             {
-               $response =  ['statud'=>true,'messages'=>"Erro ao eliminar o produto "];
+               $response =  ['status'=>true,'messages'=>"Erro ao eliminar o produto "];
             }
-            session()->flash('statud',$response);
+            session()->flash('status',$response);
            return redirect()->back();
        }catch(Exception $e)
        {
             return redirectError('/admin/itens',  $e->getMessage());
        } 
+    }
+
+    public function addNewEstoque(Request $request){
+        try{
+      
+            $status = '1';
+            $ipuntValidatorInput = $this->validatorInput($request,true);
+               if(!$ipuntValidatorInput){
+                return redirect()->back();
+               }
+               $item     = $this->item->find($request->id);
+               if(!isset($item->id) || $item == null)
+                {
+                  $response =  ['status'=>false,'messages'=>"O produto não encontrado."];
+                  session()->flash('status',$response);
+                  return redirect()->back();
+                }
+
+              
+                $newEstoque = $item->quantEstoque + $request->quantCompra;
+                $data    = $item->update([
+                    'precoVenda'    =>  $request->precoVenda,
+                    'precoCompra'   =>  $request->precoCompra,
+                    'quantCompra'   =>  $request->quantCompra,
+                    'quantEstoque'  =>  $newEstoque,
+                    'fornecedor_id' =>  $request->fornecedor_id,
+                    'quantEstoque'  =>  $newEstoque,
+                    'status'        =>  $status,
+               ]);
+
+               if($data)
+               {
+                $produto = $item->produto->name;
+                  $response =  ['status'=>true,'messages'=>"<b>$produto</b> actualizado com sucesso","data"=>$data];
+               }else
+               {
+                  $response =  ['status'=>true,'messages'=>"Erro ao cadastrar Itens"];
+               }
+      
+               session()->flash('status',$response);
+               return redirect()->back();
+          }catch(Exception $e)
+          {
+            return redirectError('admin/itens',  $e->getMessage());
+          }
+    }
+
+    // DETALHES DE ITENS
+
+    public function detailsItem($id){
+        try{
+
+            $validator = Validator::make(['id'=>$id],[
+                'id'=>'required|integer'
+             ]);
+    
+             if($validator->fails()){
+                 $msg= "Registro Invalido";
+                
+                $response =  ['status'=>false,'messages'=>$msg];
+    
+                  session()->flash('status',$response);
+    
+                 return redirect()->back();
+             }
+            $item     = $this->item->find($id);
+
+             if(!isset($item->id) || $item == null)
+             {
+               $response =  ['status'=>false,'messages'=>"itens não encontrado."];
+               session()->flash('status',$response);
+               return redirect()->back();;
+             }
+      
+            return view('panel.admin.itens.details.detail',compact('item'));
+          }catch(Exception $e)
+          {
+            return redirectError('/admin/itens',  $e->getMessage());
+          }
     }
 
     // VALIDA OS COMPOS Obrigatorio

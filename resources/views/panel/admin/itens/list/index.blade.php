@@ -62,13 +62,13 @@
                             @foreach ($itens as $item)
                                 <tr>
                                     <td>{{ $item->codProduto }}</td>
-                                    <td>{{ $item->produto_id }}</td>
+                                    <td>{{ $item->produto->name }}</td>
                                     <td>{{ $item->quantCompra }}</td>
                                     <td>{{ $item->quantVendido }}</td>
                                     <td>{{ $item->quantEstoque }}</td>
                                     <td>{{ $item->precoCompra }}</td>
                                     <td>{{ $item->precoVenda }}</td>
-                                    <td>{{ $item->fornecedor_id }}</td>
+                                    <td>{{ $item->fornecedor->name }}</td>
                                     <td>
                                         @if( $item->status )
                                         <i class="bi bi-circle-fill Status-active"></i>
@@ -78,8 +78,11 @@
 
                                     </td>
                                     <td class="">
-                                        <a href="#"><button
-                                                class="btn-accoes"><i class="ri-eye-fill"></i></button></a>
+                                        <a href="/admin/itens/detail/{{$item->id}}">
+                                            <button
+                                                class="btn-accoes"><i class="ri-eye-fill"></i>
+                                            </button>
+                                        </a>
                                         <a href="#">
                                             <button class="btn-accoes"><i class="ri-edit-box-line"></i></button></a>
                                         <button class="btn-accoes BtnDeleteTrue" data-bs-toggle="modal"

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
-use App\Models\Admin\Forncedor;
+use App\Models\Admin\Fornecedor;
 use App\Models\Admin\Produto;
 
 /**
@@ -85,7 +85,7 @@ function getDados($oque)
    $result_query = [];
    switch($oque){
        case 'fornecedores':
-         $result_query  = Forncedor::orderBy('name','asc')->
+         $result_query  = Fornecedor::orderBy('name','asc')->
                            where('status','1')->get();
         break;
         case 'produtos':
