@@ -30,7 +30,7 @@ Route::middleware('auth','role:administrador')->prefix('admin')->group(function(
     Route::resource('itens',ItensController::class);
     Route::get('/itens/detail/{id}',[ItensController::class,'detailsItem'])->name('itens.detail');
     Route::post('/itens/update-estoque',[ItensController::class,'addNewEstoque'])->name('intes.addnewestoque');
-    Route::get('/venda/create')->name('venda.create',[ItensController::class,'create']);
+    Route::get('/venda/create',[VendaController::class,'create'])->name('venda.create');
     // Rota do usuario 
     Route::resource('user',UserController::class);
 });
