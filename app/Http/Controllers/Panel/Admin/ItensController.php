@@ -326,6 +326,19 @@ class ItensController extends Controller
           }
     }
 
+
+    public function searchItemBycode($code){
+        try{
+
+            $dados = ["nome" => 'sabão'];
+             return response()->json(['data'=>$code]);
+          }catch(Exception $e)
+          {
+            $status = ["falha ".$e->getMessage()];
+            return  response()->json(['status'=>$dados]);;
+          }
+    }
+
     // VALIDA OS COMPOS Obrigatorio
     private function validatorInput($request,$params = false,$admin = false)
     {

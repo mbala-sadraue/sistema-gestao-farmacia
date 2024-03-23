@@ -34,3 +34,7 @@ Route::middleware('auth','role:administrador')->prefix('admin')->group(function(
     // Rota do usuario 
     Route::resource('user',UserController::class);
 });
+Route::prefix('admin')->group(function(){
+
+    Route::get('/itens/serach-by-code/{codProduto}',[ItensController::class,'searchItemBycode'])->name('intes.addnewestoque');
+});
