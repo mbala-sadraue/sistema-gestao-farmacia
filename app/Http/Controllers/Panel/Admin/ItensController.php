@@ -34,15 +34,15 @@ class ItensController extends Controller
     
             if(request('codProduto') && !isNullOrEmpty(request('codProduto')))
             {
-                $itens = searchByField($itens,"codProduto",request('codProduto'));
+                $itens = searchByField($this->item,"codProduto",request('codProduto'));
             }
             if(request('produto_id') && !isNullOrEmpty(request('produto_id')))
             {
-                $itens = searchByField($itens,"produto_id",request('produto_id'),true);
+                $itens = searchByField($this->item,"produto_id",request('produto_id'),true);
             }
             if(request('status') && !isNullOrEmpty(request('status')))
             {
-                $itens = searchByField($itens,"status",request('status'));
+                $itens = searchByField($this->item,"status",request('status'));
             }
 
             $itens  = $itens->paginate($sizePaginete);
@@ -323,6 +323,21 @@ class ItensController extends Controller
           }catch(Exception $e)
           {
             return redirectError('/admin/itens',  $e->getMessage());
+          }
+    }
+
+
+    public function searchItemBycode($code){
+        try{
+
+            $itens = $this->item::with('produto')->where("codProduto",'LIKE',"%".$code."%")->get();
+          
+            $data = $itens;
+             return response()->json(['data'=>$data,"status" => true]);
+          }catch(Exception $e)
+          {
+            $status = ["falha ".$e->getMessage()];
+            return  response()->json(['status'=>$status]);;
           }
     }
 

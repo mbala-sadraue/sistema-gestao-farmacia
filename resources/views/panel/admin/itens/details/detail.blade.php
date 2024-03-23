@@ -168,7 +168,7 @@
       <div class="modal-header">
         <div>
           <h6>lançar Estoque</h6>
-          <p class="card-modal-p">Formulário para larnçamento de estoque</p>
+          <p class="card-modal-p">Formulário para lançamento de estoque</p>
         </div>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>

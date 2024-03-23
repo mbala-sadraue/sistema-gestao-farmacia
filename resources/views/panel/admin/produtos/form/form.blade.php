@@ -1,12 +1,4 @@
 @extends("templates.painel.admin.admin-master.admin-layout")
-@push('styles')
-<link rel="stylesheet" type="text/css" href="{{asset('assets/form-steps/css/roboto-font.css')}}">
-<link rel="stylesheet" type="text/css"
-  href="{{asset('assets/form-steps/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('assets/form-steps/css/jquery-ui.min.css')}}">
-<link rel="stylesheet" href="{{asset('assets/form-steps/css/style.css')}}" />
-<link rel="stylesheet" href="{{asset('assets/form-steps/css/form-steps.css')}}" />
-@endpush
 
 @section('headTitle','cadastar-produto')
 <!----CONTENT------>

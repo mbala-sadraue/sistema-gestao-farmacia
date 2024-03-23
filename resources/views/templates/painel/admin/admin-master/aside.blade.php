@@ -3,10 +3,10 @@
 @section('menus')
 
 <li class="nav-item">
-  <a class="nav-link collapsed" data-bs-target="#configuaracoes-nav" data-bs-toggle="collapse" href="#">
+  <a class="nav-link collapsed" data-bs-target="#cadastros-nav" data-bs-toggle="collapse" href="#">
     <i class="ri-settings-2-line"></i><span>Cadastros</span><i class="bi bi-chevron-down ms-auto"></i>
   </a>
-  <ul id="configuaracoes-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+  <ul id="cadastros-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
     <li>
       <a href="/admin/itens">
         <i class="bi bi-circle"></i><span>Itens</span>
@@ -24,6 +24,19 @@
     </li>
   </ul>
 </li><!-- CADASTROS-->
+
+<li class="nav-item">
+  <a class="nav-link collapsed" data-bs-target="#Vendas-nav" data-bs-toggle="collapse" href="#">
+    <i class="ri-settings-2-line"></i><span>Vendas</span><i class="bi bi-chevron-down ms-auto"></i>
+  </a>
+  <ul id="Vendas-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <li>
+      <a href="/admin/venda/create">
+        <i class="bi bi-circle"></i><span>Vender</span>
+      </a>
+    </li>
+  </ul>
+</li><!-- Vendas-->
 
 <li class="nav-item">
   <a class="nav-link collapsed" data-bs-target="#configuaracoes-nav" data-bs-toggle="collapse" href="#">

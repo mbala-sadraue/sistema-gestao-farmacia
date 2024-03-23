@@ -7,10 +7,22 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Vendedor\Venda;
 use App\Models\Vendedor\ItensVendido;
+
 class VendaController extends Controller
 {
 
 
+    public function create()
+    {
+        try {
+
+            $typeForm = 'create';
+             return view('panel.vendedor.vendas.form.venda',compact('typeForm'));
+ 
+         } catch (Exception $th) {
+             return redirectError('admin/venda/create',  $e->getMessage());
+         }
+    }
 
 
     public function store_venda()
@@ -40,6 +52,12 @@ class VendaController extends Controller
            ]);
         }
 
+    }
+    private function redirectError($route, $message){
+        $msg        = $message;
+        $response   =  ['status'=>false,'messages'=>"o correu um erro, contacte o administrador! ".$msg];
+        session()->flash('status',$response);
+        return redirect("$route");
     }
         
 }

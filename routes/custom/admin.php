@@ -6,6 +6,7 @@ use App\Http\Controllers\Panel\Admin\ItensController;
 use App\Http\Controllers\Panel\Admin\ProdutoController;
 use App\Http\Controllers\Panel\Admin\DashboardController;
 use App\Http\Controllers\Panel\Admin\FornecedorController;
+use App\Http\Controllers\Panel\Vendedor\VendaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +30,11 @@ Route::middleware('auth','role:administrador')->prefix('admin')->group(function(
     Route::resource('itens',ItensController::class);
     Route::get('/itens/detail/{id}',[ItensController::class,'detailsItem'])->name('itens.detail');
     Route::post('/itens/update-estoque',[ItensController::class,'addNewEstoque'])->name('intes.addnewestoque');
-
+    Route::get('/venda/create',[VendaController::class,'create'])->name('venda.create');
     // Rota do usuario 
     Route::resource('user',UserController::class);
+});
+Route::prefix('admin')->group(function(){
+
+    Route::get('/itens/serach-by-code/{codProduto}',[ItensController::class,'searchItemBycode'])->name('intes.addnewestoque');
 });
