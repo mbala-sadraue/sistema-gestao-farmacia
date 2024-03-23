@@ -59,7 +59,7 @@
   <div class="my-3">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
           <div class="row">
             <div class="col-md-6">
               <a href="#" id="buttonAdditen">
@@ -70,27 +70,25 @@
             </div>
           </div>
           <div class="row">
-            <div class="row">
-              <div class="col-md-6 pr-1">
+              <div class="col-md-4 pr-1">
                 <label for="produtoname" class="form-label">Produto</label>
                 <input type="text" name="name" class="form-control" id="produtoname" value="" title="Digite o Nome"
                   required disabled>
               </div>
-              <div class="col-md-3 pl-1">
+              <div class="col-md-2 pr-1 pl-1">
+                <label for="produtoname" class="form-label">Preço Unit.</label>
+                <input type="text" name="preco" class="form-control" id="preco" value="" title="Digite o Nome"
+                  required disabled>
+              </div>
+              <div class="col-md-2 pl-1 pr-1">
                 <label for="quantidade" class="form-label">Quantidade</label>
                 <input type="number" min="1" name="quantidade" class="form-control" id="quantidade" value=""
                   title="Digite a Quantidade" required>
-                <div class="invalid-feedback">
-                  Quantidade é obrigatório!
-                </div>
               </div>
-              <div class="col-md-3 pl-1">
+              <div class="col-md-2 pl-1">
                 <label for="desconto" class="form-label">Desc</label>
                 <input type="number" min="1" name="desconto" class="form-control" id="desconto" value=""
                   title="Digite o desconto" required>
-                <div class="invalid-feedback">
-                  desconto é obrigatório!
-                </div>
               </div>
             </div>
           </div>

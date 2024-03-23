@@ -57,6 +57,7 @@ $(function(){
         console.log(itemSelecionado);
 
          $('#produtoname').val(itemSelecionado.produto.name);
+         $('#preco').val(itemSelecionado.precoVenda)
         
         $('#searchProdutByCod').val('')
         $('#resultSearchProduto').html('')
