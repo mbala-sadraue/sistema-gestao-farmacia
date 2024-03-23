@@ -29,6 +29,11 @@
 
   <div class="container-fluid">
     <div class="row">
+        <div class="col-md-4">A</div>
+        <div class="col-md-4">C</div>
+        <div class="col-md-4">B</div>
+    </div>
+    <div class="row">
       <div class="col-md-6">
           <div class="row">
               <div class="col-md-4 pr-1">
@@ -44,7 +49,24 @@
               </div>
           </div>
           <div class="row">
-            
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <label for="validateNome" class="form-label">Produto</label>
+                <input type="text" name="name" class="form-control" id="validateNome" value=""
+                  title="Digite o Nome" required disabled>
+                <div class="invalid-feedback">
+                  Nome é obrigatório!
+                </div>
+              </div>
+              <div class="col-md-3 pl-1">
+                <label for="quantidade" class="form-label">Quantidade</label>
+                <input type="text" name="quantidade" class="form-control" id="quantidade"
+                  value="" title="Digite oa Quantidade" required>
+                <div class="invalid-feedback">
+                  Quantidade é obrigatório!
+                </div>
+              </div>
+            </div>
           </div>
       </div>
 
