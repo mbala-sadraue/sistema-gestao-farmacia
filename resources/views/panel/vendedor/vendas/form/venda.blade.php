@@ -31,12 +31,20 @@
     <div class="row">
       <div class="col-md-6">
           <div class="row">
-              <div class="col-md-6">
-                  A
+              <div class="col-md-4 pr-1">
+                <label for="validateSearchCod" class="form-label">Perquisar por Cod.</label>
+                <input type="text" name="searchCod" class="form-control" id="validateSearchCod" value=""
+                  title="Digite o Nome" required>
               </div>
-              <div class="col-md-6">
-                b
+              <div class="col-md-6 pl-1">
+                <label for="validateSearchNameProduto" class="form-label">Pesquisar por Nome</label>
+                <input type="text" name="description" class="form-control" id="validateSearchNameProduto"
+                  value="" title="Digite o Nome Produto" required>
+                
               </div>
+          </div>
+          <div class="row">
+            
           </div>
       </div>
 
