@@ -2,6 +2,13 @@
 $(function(){
 
 
+
+    $('#resultSearchProduto').on('click','li','a',function(){
+
+        console.log("Produto adicionado")
+    });
+
+
     $('#searchProdutByCod').keyup(function(){
     
         let query =  $(this).val().trim();
@@ -15,7 +22,23 @@ $(function(){
     
                 if(response['status'] == true)  {
 
-                    let prutodos = response['data'];
+                    let itens = response['data'];
+                   
+                    for( let item of itens){
+
+                        let li = document.createElement('li');
+                        li.setAttribute('class','nav-item');
+                        let a = document.createElement('a');
+                        a.setAttribute('href','#');
+                        a.setAttribute('class','nav-link');
+                        a.setAttribute('data-bs-dismiss','modal')
+
+                        
+                        a.innerText = item.codProduto +' - '+ item.produto.name
+                        li.appendChild(a);
+                        $('#resultSearchProduto').html(li)
+                      
+                    }
 
                     
                 }else{

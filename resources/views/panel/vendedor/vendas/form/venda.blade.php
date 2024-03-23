@@ -54,23 +54,19 @@
       </div>
     </div>
   </div>
-  
+
 
   <div class="my-3">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
           <div class="row">
-            <div class="col-md-4 pr-1">
-              <label for="searchProdutByCod" class="form-label">Perquisar por Cod.</label>
-              <input type="text" name="searchCod" class="form-control" id="searchProdutByCod" value=""
-                title="Digite o Nome" required>
-            </div>
-            <div class="col-md-6 pl-1">
-              <label for="validateSearchNameProduto" class="form-label">Pesquisar por Nome</label>
-              <input type="text" name="description" class="form-control" id="validateSearchNameProduto" value=""
-                title="Digite o Nome Produto" required>
-  
+            <div class="col-md-6">
+              <a href="#" id="buttonAdditen">
+                <button type="button" class="btn btn-primary " id="btn-add" data-bs-toggle="modal"
+                  data-bs-target="#modalAddClasse">
+                  <i class="bi bi-search me-1"></i>Pesquisar Prouto
+                </button></a>
             </div>
           </div>
           <div class="row">
@@ -102,7 +98,7 @@
             </div>
           </div>
         </div>
-  
+
       </div>
     </div>
   </div>
@@ -146,6 +142,56 @@
 
   </div>
 </section>
+
+
+<div class="modal fade formModal" id="modalAddClasse" tabindex="-1" data-bs-keyboard="false" data-bs-backdrop="static">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h6>lançar Estoque</h6>
+          <p class="card-modal-p">Formulário para pesquisar o produto</p>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Vertical Form -->
+      <form class=" g-3 needs-validation" novalidate method="post" action="">
+        @csrf
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <label for="searchProdutByCod" class="form-label">Perquisar por Cod.</label>
+              <input type="text" name="searchCod" class="form-control" id="searchProdutByCod" value=""
+                title="Digite o Nome" required>
+            </div>
+            <div class="col-md-6 pl-1">
+              <label for="validateSearchNameProduto" class="form-label">Pesquisar por Nome</label>
+              <input type="text" name="description" class="form-control" id="validateSearchNameProduto" value=""
+                title="Digite o Nome Produto" required>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+              <div class="col-md-12">
+                  <ul class="nav-pill" id="resultSearchProduto">
+                    <li class="nav-item"><a href="" class="nav-link">Sabão</a></li>
+                    <li class="nav-item"><a href="" class="nav-link">Caveneno</a></li>
+                    <li class="nav-item"><a href="" class="nav-link">Leite</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <div class="col-12">
+              <button type="reset" class="btn btn-secondary" id="btn-reset" data-bs-dismiss="modal">cancelar</button>
+              <button type="submit" class="btn btn-primary" id="btn-save">Registar</button>
+            </div>
+          </div>
+      </form><!-- Vertical Form -->
+    </div>
+  </div>
+</div><!-- End Vertically centered Modal-->
 @endsection
 @push('scripts')
 <script src="{{asset('assets/js/my-js/venda.js')}}"></script

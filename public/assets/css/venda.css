@@ -1,27 +1,47 @@
-.form-venda{
+.form-venda {
     box-shadow: 0px 0px 2px #00000038;
     background: #fff;
 }
-.form-venda input{
+
+.form-venda input {
     border-radius: 0 !important;
 }
-.box-info{
+
+.box-info {
     height: 84px;
     border: 1px solid #0000000f;
     text-align: center;
 }
-.box-info h6{
+
+.box-info h6 {
     margin-bottom: 3px;
 }
-.box-info h3{
+
+.box-info h3 {
     font-size: 21px;
     font-weight: bold;
 }
-.bg-verde{
-    color:#fff;
+
+.bg-verde {
+    color: #fff;
     background: #48b361;
 }
-.bg-azul{
-    color:#fff;
+
+.bg-azul {
+    color: #fff;
     background: #09c;
+}
+
+/* RESULTADO*/
+#resultSearchProduto {
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+#resultSearchProduto .nav-link {
+    padding: 8px 0px;
+    border-bottom: 1px solid #0000001f;
 }
