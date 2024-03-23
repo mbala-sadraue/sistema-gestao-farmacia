@@ -13,8 +13,15 @@ $(function(){
             dataType: 'json',
             success: function (response) {
     
+                if(response['status'] == true)  {
+
+                    let prutodos = response['data'];
+
+                    
+                }else{
+                    console.log("um erro")
+                }
               
-                console.log('dados: ',response);
             }
         })
 
