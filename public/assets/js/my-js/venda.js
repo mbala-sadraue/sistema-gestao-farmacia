@@ -1,13 +1,5 @@
-
+var itens;
 $(function(){
-
-
-
-    $('#resultSearchProduto').on('click','li','a',function(){
-
-        console.log("Produto adicionado")
-    });
-
 
     $('#searchProdutByCod').keyup(function(){
     
@@ -19,26 +11,28 @@ $(function(){
             data: {},
             dataType: 'json',
             success: function (response) {
-    
+                
                 if(response['status'] == true)  {
 
-                    let itens = response['data'];
+                    itens = response['data'];
                    
+                    let i = document.createElement('div');
                     for( let item of itens){
 
-                        let li = document.createElement('li');
+                        let li= document.createElement('li');
                         li.setAttribute('class','nav-item');
                         let a = document.createElement('a');
                         a.setAttribute('href','#');
                         a.setAttribute('class','nav-link');
                         a.setAttribute('data-bs-dismiss','modal')
+                        a.setAttribute('data-id',item.id)
 
                         
                         a.innerText = item.codProduto +' - '+ item.produto.name
                         li.appendChild(a);
-                        $('#resultSearchProduto').html(li)
-                      
+                        i.appendChild(li)
                     }
+                    $('#resultSearchProduto').html(i);
 
                     
                 }else{
@@ -50,10 +44,24 @@ $(function(){
 
         return;
 
-       if(query.length > 2){
-           console.log(query.length)
-       } 
+    //    if(query.length > 2){
+    //        console.log(query.length)
+    //    } 
     });
+
+    $('#resultSearchProduto').on('click','li','a',function(){
+
+        let i = $(this).find('a').attr('data-id');
+        let itemSelecionado;
+        itemSelecionado = itens.find((item) => item.id == i);
+        console.log(itemSelecionado);
+
+         $('#produtoname').val(itemSelecionado.produto.name);
+        
+        $('#searchProdutByCod').val('')
+        $('#resultSearchProduto').html('')
+    });
+
 
     
 

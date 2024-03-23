@@ -72,12 +72,9 @@
           <div class="row">
             <div class="row">
               <div class="col-md-6 pr-1">
-                <label for="validateNome" class="form-label">Produto</label>
-                <input type="text" name="name" class="form-control" id="validateNome" value="" title="Digite o Nome"
+                <label for="produtoname" class="form-label">Produto</label>
+                <input type="text" name="name" class="form-control" id="produtoname" value="" title="Digite o Nome"
                   required disabled>
-                <div class="invalid-feedback">
-                  Nome é obrigatório!
-                </div>
               </div>
               <div class="col-md-3 pl-1">
                 <label for="quantidade" class="form-label">Quantidade</label>
@@ -175,11 +172,7 @@
 
           <div class="row mt-2">
               <div class="col-md-12">
-                  <ul class="nav-pill" id="resultSearchProduto">
-                    <li class="nav-item"><a href="" class="nav-link">Sabão</a></li>
-                    <li class="nav-item"><a href="" class="nav-link">Caveneno</a></li>
-                    <li class="nav-item"><a href="" class="nav-link">Leite</a></li>
-                  </ul>
+                  <ul class="nav-pill" id="resultSearchProduto"></ul>
               </div>
           </div>
           <div class="modal-footer">
