@@ -58,11 +58,15 @@ $(function(){
 
          $('#produtoname').val(itemSelecionado.produto.name);
          $('#preco').val(itemSelecionado.precoVenda)
+         $('#idItem').val(itemSelecionado.precoVenda);
         
         $('#searchProdutByCod').val('')
         $('#resultSearchProduto').html('')
     });
 
+    $('#btnAdcionarProdutoCarrinho').click(function(){
+        console.log("Ola");
+    })
 
     
 

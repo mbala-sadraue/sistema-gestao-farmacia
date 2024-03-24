@@ -74,6 +74,7 @@
                 <label for="produtoname" class="form-label">Produto</label>
                 <input type="text" name="name" class="form-control" id="produtoname" value="" title="Digite o Nome"
                   required disabled>
+                  <input type="hidden" id="idItem">
               </div>
               <div class="col-md-2 pr-1 pl-1">
                 <label for="produtoname" class="form-label">Preço Unit.</label>
@@ -89,6 +90,10 @@
                 <label for="desconto" class="form-label">Desc</label>
                 <input type="number" min="1" name="desconto" class="form-control" id="desconto" value=""
                   title="Digite o desconto" required>
+              </div>
+              <div class="col-md-2 pl-1">
+                <label for=""></label>
+                <button type="button" class="btn btn-success"  id="btnAdcionarProdutoCarrinho">adicionar</button>
               </div>
             </div>
           </div>
