@@ -36,5 +36,5 @@ Route::middleware('auth','role:administrador')->prefix('admin')->group(function(
 });
 Route::prefix('admin')->group(function(){
 
-    Route::get('/itens/serach-by-code/{codProduto}',[ItensController::class,'searchItemBycode'])->name('intes.addnewestoque');
+    Route::get('/itens/serach-by-code/{codProduto}',[ItensController::class,'searchItemBycode'])->name('intes.searchProdutoBycode');
 });
