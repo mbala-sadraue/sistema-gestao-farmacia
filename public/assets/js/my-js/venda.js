@@ -1,4 +1,5 @@
 var itens;
+var itemSelecionado;
 $(function(){
 
     $('#searchProdutByCod').keyup(function(){
@@ -52,20 +53,19 @@ $(function(){
     $('#resultSearchProduto').on('click','li','a',function(){
 
         let i = $(this).find('a').attr('data-id');
-        let itemSelecionado;
         itemSelecionado = itens.find((item) => item.id == i);
-        console.log(itemSelecionado);
 
          $('#produtoname').val(itemSelecionado.produto.name);
          $('#preco').val(itemSelecionado.precoVenda)
-         $('#idItem').val(itemSelecionado.precoVenda);
+         $('#idItem').val(itemSelecionado.id);
         
         $('#searchProdutByCod').val('')
         $('#resultSearchProduto').html('')
     });
 
     $('#btnAdcionarProdutoCarrinho').click(function(){
-        console.log("Ola");
+        let idItem =  $('#idItem').val();
+        console.log(itemSelecionado);
     })
 
     
