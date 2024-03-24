@@ -1,5 +1,6 @@
 var itens;
 var itemSelecionado;
+const carrinhoProdutos = [];
 $(function(){
 
     $('#searchProdutByCod').keyup(function(){
@@ -65,7 +66,8 @@ $(function(){
 
     $('#btnAdcionarProdutoCarrinho').click(function(){
         let idItem =  $('#idItem').val();
-        console.log(itemSelecionado);
+        carrinhoProdutos.push(itemSelecionado)
+        console.log(carrinhoProdutos);
     })
 
     
