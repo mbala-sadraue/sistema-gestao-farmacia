@@ -67,6 +67,8 @@ $(function(){
     $('#btnAdcionarProdutoCarrinho').click(function(){
         let idItem =  $('#idItem').val();
         carrinhoProdutos.push(itemSelecionado)
+
+          $('#idItem').val('');
     })
     
     tebaleCarrinho()
@@ -76,3 +78,4 @@ $(function(){
 function tebaleCarrinho(){
     console.log(carrinhoProdutos);
 }
+
