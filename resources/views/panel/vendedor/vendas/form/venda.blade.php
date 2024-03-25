@@ -87,8 +87,8 @@
                   title="Digite a Quantidade" required>
               </div>
               <div class="col-md-2 pl-1">
-                <label for="desconto" class="form-label">Desc</label>
-                <input type="number" min="1" name="desconto" class="form-control" id="desconto" value=""
+                <label for="descontoVenda" class="form-label">Desc</label>
+                <input type="number" min="1" name="desconto" class="form-control" id="descontoVenda" value=""
                   title="Digite o desconto" required>
               </div>
               <div class="col-md-2 pl-1">
