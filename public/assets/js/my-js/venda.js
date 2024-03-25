@@ -66,6 +66,8 @@ $(function(){
 
     $('#btnAdcionarProdutoCarrinho').click(function(){
         let idItem =  $('#idItem').val();
+
+        itemSelecionado.quantiVenda = 
         carrinhoProdutos.push(itemSelecionado)
 
           $('#idItem').val('');
