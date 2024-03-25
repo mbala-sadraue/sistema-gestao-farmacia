@@ -82,8 +82,8 @@
                   required disabled>
               </div>
               <div class="col-md-2 pl-1 pr-1">
-                <label for="VendaQuant" class="form-label">Quantidade</label>
-                <input type="number" min="1" name="quantidade" class="form-control" id="VendaQuant" value=""
+                <label for="vendaQuant" class="form-label">Quantidade</label>
+                <input type="number" min="1" name="quantidade" class="form-control" id="vendaQuant" value=""
                   title="Digite a Quantidade" required>
               </div>
               <div class="col-md-2 pl-1">
