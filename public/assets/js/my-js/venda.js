@@ -69,9 +69,9 @@ $(function(){
         carrinhoProdutos.push(itemSelecionado)
 
           $('#idItem').val('');
+          tebaleCarrinho()
     })
     
-    tebaleCarrinho()
     
 })
 
