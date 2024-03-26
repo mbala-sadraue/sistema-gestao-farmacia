@@ -67,11 +67,13 @@ $(function(){
 
     $('#btnAdcionarProdutoCarrinho').click(function(){
         let idItem =  $('#idItem').val();
+        if(itemSelecionado == undefined)
+            return false;
 
         itemSelecionado.quantiVenda = $('#vendaQuant').val()
         itemSelecionado.descontoVenda = $('#descontoVenda').val()
         
-        $('#idItem').val('');
+      
         let produtoExisteCarinho = carrinhoProdutos.findIndex((item) => item.id == idItem)
         if( produtoExisteCarinho >=0){
             carrinhoProdutos.splice(produtoExisteCarinho,1);
@@ -80,6 +82,13 @@ $(function(){
     
         carrinhoProdutos.push(itemSelecionado)
           tebaleCarrinho()
+
+          //ZERAR CAMPOS 
+            $('#idItem').val('');
+            $('#produtoname').val('');
+            $('#preco').val('')
+            $('#idItem').val('');
+            itemSelecionado = undefined
     })
     
     
