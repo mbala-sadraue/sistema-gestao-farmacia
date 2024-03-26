@@ -83,11 +83,13 @@ $(function(){
         carrinhoProdutos.push(itemSelecionado)
           tebaleCarrinho()
 
-          //ZERAR CAMPOS 
+          //LIMPAR CAMPOS 
             $('#idItem').val('');
             $('#produtoname').val('');
             $('#preco').val('')
             $('#idItem').val('');
+            $('#vendaQuant').val(0);
+            $('#descontoVenda').val(0);
             itemSelecionado = undefined
     })
     

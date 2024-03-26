@@ -80,12 +80,12 @@
               </div>
               <div class="col-md-2 pl-1 pr-1">
                 <label for="vendaQuant" class="form-label">Quantidade</label>
-                <input type="number" min="1" name="quantidade" class="form-control" id="vendaQuant" value=""
+                <input type="number" min="1" value="0"  name="quantidade" class="form-control" id="vendaQuant" value=""
                   title="Digite a Quantidade" required>
               </div>
               <div class="col-md-2 pl-1">
                 <label for="descontoVenda" class="form-label">Desc</label>
-                <input type="number" min="1" name="desconto" class="form-control" id="descontoVenda" value=""
+                <input type="number" min="0" value="0" name="desconto" class="form-control" id="descontoVenda" value=""
                   title="Digite o desconto" required>
               </div>
               <div class="col-md-2 pl-1">
@@ -108,7 +108,7 @@
           <th>#</th>
           <th>Cod. Produto</th>
           <th>Produto</th>
-          <th>Quantidade</th>
+          <th>Quant.</th>
           <th>Preço Unit.</th>
           <th>Preço Total</th>
           <th>acções</th>
