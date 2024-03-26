@@ -26,9 +26,9 @@
 
 
 <div id="vendaMainApp">
+  <tabela-carrinho />
 <section class="section dashbord section_form form-venda bg-white m-2" id="secionMain">
-
-  <div class="my-3">
+  <div class="my-3" v-if="venda">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-4">
@@ -101,14 +101,9 @@
     </div>
   </div>
   <!-- Tabela de registro de venda -->
-  <div class="" id="tabelaVenda">
-
- 
-
+  <div >
   </div>
 </section>
-
-</div>
 <div class="modal fade formModal" id="modalAddClasse" tabindex="-1" data-bs-keyboard="false" data-bs-backdrop="static">
   <div class="modal-dialog ">
     <div class="modal-content">
@@ -155,5 +150,6 @@
 </div><!-- End Vertically centered Modal-->
 @endsection
 @push('scripts')
-<script src="{{asset('assets/js/my-js/venda.js')}}"></script
+<script src="{{asset('assets/js/vue.js')}}"></script>
+<script src="{{asset('assets/js/my-js/venda.js')}}"></script>
   @endpush

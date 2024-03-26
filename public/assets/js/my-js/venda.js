@@ -84,54 +84,59 @@ function tebaleCarrinho(){
 
 
 
-Vue.Component('tabela-carrinho',{
+// Vue.component('tabela-carrinho',{
 
-    props:[],
-    template:`
-    <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Cod. Produto</th>
-        <th>Produto</th>
-        <th>Quantidade</th>
-        <th>Preço Unit.</th>
-        <th>Preço Total</th>
-        <th>acções</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>27930RD</td>
-        <td>Sabão</td>
-        <td>4</td>
-        <td>2.000,00</td>
-        <td>4.00,00</td>
-        <td class="">
-          <a href="">
-            <button class="btn-accoes"><i class="ri-eye-fill"></i>
-            </button>
-          </a>
+//     props:[],
+//     template:`
+//     <table class="table">
+//     <thead>
+//       <tr>
+//         <th>#</th>
+//         <th>Cod. Produto</th>
+//         <th>Produto</th>
+//         <th>Quantidade</th>
+//         <th>Preço Unit.</th>
+//         <th>Preço Total</th>
+//         <th>acções</th>
+//       </tr>
+//     </thead>
+//     <tbody>
+//       <tr>
+//         <td>1</td>
+//         <td>27930RD</td>
+//         <td>Sabão</td>
+//         <td>4</td>
+//         <td>2.000,00</td>
+//         <td>4.00,00</td>
+//         <td class="">
+//           <a href="">
+//             <button class="btn-accoes"><i class="ri-eye-fill"></i>
+//             </button>
+//           </a>
 
-          <button class="btn-accoes BtnDeleteTrue" data-bs-toggle="modal" data-bs-target="#verticalycentered" value=""
-            data-dt-url="" data-dt-titte="item">
-            <i class="bi bi-x-circle-fill"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-    `
-});
+//           <button class="btn-accoes BtnDeleteTrue" data-bs-toggle="modal" data-bs-target="#verticalycentered" value=""
+//             data-dt-url="" data-dt-titte="item">
+//             <i class="bi bi-x-circle-fill"></i>
+//           </button>
+//         </td>
+//       </tr>
+//     </tbody>
+//   </table>
+//     `,
+//     methods: {
+//     }
+// });
 
 const root = new Vue({
-    element: "#vendaMainApp",
+    el: "#vendaMainApp",
     data:{
-
+        venda:true
     },
     methods:{
 
-    }
+    },
+    component: [
+        'tabela-carrinho',
+    ]
 })
 
