@@ -25,7 +25,7 @@
 </div><!-- End Page Title -->
 
 
-<div id="vendaMain">
+<div id="vendaMainApp">
 <section class="section dashbord section_form form-venda bg-white m-2" id="secionMain">
 
   <div class="my-3">

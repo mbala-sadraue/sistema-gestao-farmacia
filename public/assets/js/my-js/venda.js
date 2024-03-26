@@ -125,3 +125,13 @@ Vue.Component('tabela-carrinho',{
     `
 });
 
+const root = new Vue({
+    element: "#vendaMainApp",
+    data:{
+
+    },
+    methods:{
+
+    }
+})
+
