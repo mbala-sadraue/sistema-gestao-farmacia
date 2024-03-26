@@ -26,7 +26,6 @@
 
 
 <div id="vendaMainApp">
-  <tabela-carrinho />
 <section class="section dashbord section_form form-venda bg-white m-2" id="secionMain">
   <div class="my-3" v-if="venda">
     <div class="container-fluid">
@@ -101,7 +100,24 @@
     </div>
   </div>
   <!-- Tabela de registro de venda -->
-  <div >
+  <div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Cod. Produto</th>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Preço Unit.</th>
+          <th>Preço Total</th>
+          <th>acções</th>
+        </tr>
+      </thead>
+      <tbody id="bodyCarrinho">
+       
+      </tbody>
+    </table>
   </div>
 </section>
 <div class="modal fade formModal" id="modalAddClasse" tabindex="-1" data-bs-keyboard="false" data-bs-backdrop="static">

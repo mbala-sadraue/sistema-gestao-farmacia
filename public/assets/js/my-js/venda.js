@@ -79,7 +79,36 @@ $(function(){
 })
 
 function tebaleCarrinho(){
-    console.log(carrinhoProdutos);
+
+    let tabody = '';
+    let index = 1;
+    for(let itemCarrinho of carrinhoProdutos){
+     let tr = `
+        <tr>
+            <td>${index}</td>
+            <td>${itemCarrinho.codProduto}</td>
+            <td>${itemCarrinho.produto.carrinho}</td>
+            <td>${itemCarrinho.quantiVenda}</td>
+            <td>${itemCarrinho.precoVenda}</td>
+            <td>4.00,00</td>
+            <td class="">
+            <a href="">
+                <button class="btn-accoes"><i class="ri-eye-fill"></i>
+                </button>
+            </a>
+
+            <button class="btn-accoes BtnDeleteTrue" data-bs-toggle="modal" data-bs-target="#verticalycentered" value=""
+                data-dt-url="" data-dt-titte="item">
+                <i class="bi bi-x-circle-fill"></i>
+            </button>
+            </td>
+        </tr>
+     `; 
+     index++;
+     tabody += tr;
+    }
+    
+    $('#bodyCarrinho').html(tabody);
 }
 
 
@@ -135,8 +164,5 @@ const root = new Vue({
     methods:{
 
     },
-    component: [
-        'tabela-carrinho',
-    ]
 })
 
