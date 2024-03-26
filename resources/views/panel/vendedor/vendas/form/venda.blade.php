@@ -24,11 +24,9 @@
   </div>
 </div><!-- End Page Title -->
 
+
+<div id="vendaMain">
 <section class="section dashbord section_form form-venda bg-white m-2" id="secionMain">
-
-
-
-
 
   <div class="my-3">
     <div class="container-fluid">
@@ -105,45 +103,12 @@
   <!-- Tabela de registro de venda -->
   <div class="" id="tabelaVenda">
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Cod. Produto</th>
-          <th>Produto</th>
-          <th>Quantidade</th>
-          <th>Preço Unit.</th>
-          <th>Preço Total</th>
-          <th>acções</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>27930RD</td>
-          <td>Sabão</td>
-          <td>4</td>
-          <td>2.000,00</td>
-          <td>4.00,00</td>
-          <td class="">
-            <a href="">
-              <button class="btn-accoes"><i class="ri-eye-fill"></i>
-              </button>
-            </a>
-
-            <button class="btn-accoes BtnDeleteTrue" data-bs-toggle="modal" data-bs-target="#verticalycentered" value=""
-              data-dt-url="" data-dt-titte="item">
-              <i class="bi bi-x-circle-fill"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+ 
 
   </div>
 </section>
 
-
+</div>
 <div class="modal fade formModal" id="modalAddClasse" tabindex="-1" data-bs-keyboard="false" data-bs-backdrop="static">
   <div class="modal-dialog ">
     <div class="modal-content">
