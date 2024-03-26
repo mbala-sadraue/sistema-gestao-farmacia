@@ -68,7 +68,7 @@ $(function(){
         let idItem =  $('#idItem').val();
 
         itemSelecionado.quantiVenda = $('#vendaQuant').val()
-        temSelecionado.descontoVenda = $('#descontoVenda').val()
+        itemSelecionado.descontoVenda = $('#descontoVenda').val()
         carrinhoProdutos.push(itemSelecionado)
 
           $('#idItem').val('');
