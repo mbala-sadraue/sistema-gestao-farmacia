@@ -54,6 +54,7 @@ $(function(){
     $('#resultSearchProduto').on('click','li','a',function(){
 
         let i = $(this).find('a').attr('data-id');
+        
         itemSelecionado = itens.find((item) => item.id == i);
 
          $('#produtoname').val(itemSelecionado.produto.name);
@@ -69,9 +70,15 @@ $(function(){
 
         itemSelecionado.quantiVenda = $('#vendaQuant').val()
         itemSelecionado.descontoVenda = $('#descontoVenda').val()
+        
+        $('#idItem').val('');
+        let produtoExisteCarinho = carrinhoProdutos.findIndex((item) => item.id == idItem)
+        if( produtoExisteCarinho >=0){
+            carrinhoProdutos.splice(produtoExisteCarinho,1);
+        }
+      
+    
         carrinhoProdutos.push(itemSelecionado)
-
-          $('#idItem').val('');
           tebaleCarrinho()
     })
     
@@ -83,14 +90,15 @@ function tebaleCarrinho(){
     let tabody = '';
     let index = 1;
     for(let itemCarrinho of carrinhoProdutos){
+        let subTotal = itemCarrinho.quantiVenda * itemCarrinho.precoVenda;
      let tr = `
         <tr>
             <td>${index}</td>
             <td>${itemCarrinho.codProduto}</td>
-            <td>${itemCarrinho.produto.carrinho}</td>
+            <td>${itemCarrinho.produto.name}</td>
             <td>${itemCarrinho.quantiVenda}</td>
             <td>${itemCarrinho.precoVenda}</td>
-            <td>4.00,00</td>
+            <td>${subTotal}</td>
             <td class="">
             <a href="">
                 <button class="btn-accoes"><i class="ri-eye-fill"></i>
