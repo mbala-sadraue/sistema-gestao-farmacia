@@ -24,31 +24,28 @@
   </div>
 </div><!-- End Page Title -->
 
+
+<div id="vendaMainApp">
 <section class="section dashbord section_form form-venda bg-white m-2" id="secionMain">
-
-
-
-
-
-  <div class="my-3">
+  <div class="my-3" v-if="venda">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-4">
           <div class="box-info py-3">
             <h6>Total Bruto</h6>
-            <h3>7000,00</h3>
+            <h3 id="valorBruto">0,00</h3>
           </div>
         </div>
         <div class="col-md-4">
           <div class="box-info bg-azul py-3">
             <h6>Desconto</h6>
-            <h3>7000,00</h3>
+            <h3 id="valorDesconto">0,00</h3>
           </div>
         </div>
         <div class="col-md-4">
           <div class="box-info bg-verde py-3">
             <h6>Total</h6>
-            <h3>7000,00</h3>
+            <h3 id="valorTotal">0,00</h3>
           </div>
         </div>
       </div>
@@ -74,6 +71,7 @@
                 <label for="produtoname" class="form-label">Produto</label>
                 <input type="text" name="name" class="form-control" id="produtoname" value="" title="Digite o Nome"
                   required disabled>
+                  <input type="hidden" id="idItem">
               </div>
               <div class="col-md-2 pr-1 pl-1">
                 <label for="produtoname" class="form-label">Preço Unit.</label>
@@ -81,14 +79,18 @@
                   required disabled>
               </div>
               <div class="col-md-2 pl-1 pr-1">
-                <label for="quantidade" class="form-label">Quantidade</label>
-                <input type="number" min="1" name="quantidade" class="form-control" id="quantidade" value=""
+                <label for="vendaQuant" class="form-label">Quantidade</label>
+                <input type="number" min="1" value="0"  name="quantidade" class="form-control" id="vendaQuant" value=""
                   title="Digite a Quantidade" required>
               </div>
               <div class="col-md-2 pl-1">
-                <label for="desconto" class="form-label">Desc</label>
-                <input type="number" min="1" name="desconto" class="form-control" id="desconto" value=""
+                <label for="descontoVenda" class="form-label">Desc</label>
+                <input type="number" min="0" value="0" name="desconto" class="form-control" id="descontoVenda" value=""
                   title="Digite o desconto" required>
+              </div>
+              <div class="col-md-2 pl-1">
+                <label for=""></label>
+                <button type="button" class="btn btn-success"  id="btnAdcionarProdutoCarrinho">adicionar</button>
               </div>
             </div>
           </div>
@@ -98,7 +100,7 @@
     </div>
   </div>
   <!-- Tabela de registro de venda -->
-  <div class="" id="tabelaVenda">
+  <div>
 
     <table class="table">
       <thead>
@@ -106,39 +108,18 @@
           <th>#</th>
           <th>Cod. Produto</th>
           <th>Produto</th>
-          <th>Quantidade</th>
+          <th>Quant.</th>
           <th>Preço Unit.</th>
           <th>Preço Total</th>
           <th>acções</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>27930RD</td>
-          <td>Sabão</td>
-          <td>4</td>
-          <td>2.000,00</td>
-          <td>4.00,00</td>
-          <td class="">
-            <a href="">
-              <button class="btn-accoes"><i class="ri-eye-fill"></i>
-              </button>
-            </a>
-
-            <button class="btn-accoes BtnDeleteTrue" data-bs-toggle="modal" data-bs-target="#verticalycentered" value=""
-              data-dt-url="" data-dt-titte="item">
-              <i class="bi bi-x-circle-fill"></i>
-            </button>
-          </td>
-        </tr>
+      <tbody id="bodyCarrinho">
+       
       </tbody>
     </table>
-
   </div>
 </section>
-
-
 <div class="modal fade formModal" id="modalAddClasse" tabindex="-1" data-bs-keyboard="false" data-bs-backdrop="static">
   <div class="modal-dialog ">
     <div class="modal-content">
@@ -185,5 +166,6 @@
 </div><!-- End Vertically centered Modal-->
 @endsection
 @push('scripts')
-<script src="{{asset('assets/js/my-js/venda.js')}}"></script
+<script src="{{asset('assets/js/vue.js')}}"></script>
+<script src="{{asset('assets/js/my-js/venda.js')}}"></script>
   @endpush

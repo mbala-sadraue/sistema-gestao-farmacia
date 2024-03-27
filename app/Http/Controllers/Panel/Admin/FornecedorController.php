@@ -29,7 +29,7 @@ class FornecedorController extends Controller
     
             if(request("size"))
             {
-                $sizePaginete = isCorretoSizePaginate(request("size"));
+                $sizePaginete = isCorretSizePaginate(request("size"));
     
             }
     
