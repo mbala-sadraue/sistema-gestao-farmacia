@@ -96,6 +96,11 @@ $(function(){
     $('#bodyCarrinho').on('click','button',function(){
         console.log("Entrou")
         let idItemDelete = $(this).val();
+        let produtoExisteCarinho = carrinhoProdutos.findIndex((item) => item.id == idItemDelete)
+        if( produtoExisteCarinho >=0){
+            carrinhoProdutos.splice(produtoExisteCarinho,1);
+        }
+        tebaleCarrinho()
     }); 
 
     
@@ -109,6 +114,9 @@ function tebaleCarrinho(){
     let tabody  = '';
     let index   = 1;
     let totalBruto   = 0;
+    let totalDesconto = 0;
+    let valorFinal = 0;
+
     for(let itemCarrinho of carrinhoProdutos){
         let subTotal = itemCarrinho.quantiVenda * itemCarrinho.precoVenda;
         totalBruto += subTotal;
@@ -131,8 +139,10 @@ function tebaleCarrinho(){
      index++;
      tabody += tr;
     }
-    
+    valorFinal = totalBruto - totalDesconto;
+
     $('#valorBruto').text(totalBruto);
+    $('#valorTotal').text(valorFinal);
     $('#bodyCarrinho').html(tabody);
 }
 
