@@ -91,7 +91,13 @@ $(function(){
         carrinhoProdutos.push(itemSelecionado)
           tebaleCarrinho()
           limparCampos()
-    })
+    });
+
+    $('#bodyCarrinho').on('click','button',function(){
+        console.log("Entrou")
+        let idItemDelete = $(this).val();
+    }); 
+
     
     
 })
@@ -115,13 +121,8 @@ function tebaleCarrinho(){
             <td>${itemCarrinho.precoVenda}</td>
             <td>${subTotal}</td>
             <td class="">
-            <a href="">
-                <button class="btn-accoes"><i class="ri-eye-fill"></i>
-                </button>
-            </a>
 
-            <button class="btn-accoes BtnDeleteTrue" data-bs-toggle="modal" data-bs-target="#verticalycentered" value=""
-                data-dt-url="" data-dt-titte="item">
+            <button class="btn-accoes deleteProduto" value="${ itemCarrinho.id }">
                 <i class="bi bi-x-circle-fill"></i>
             </button>
             </td>
