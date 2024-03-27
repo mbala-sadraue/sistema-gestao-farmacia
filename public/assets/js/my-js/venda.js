@@ -68,6 +68,7 @@ $(function(){
 
     // AÇÃO DE BOTÂO  QUE ADICIONAR PRODUTO NO CARRINHO
     $('#btnAdcionarProdutoCarrinho').click(function(){
+        
         let idItem =  $('#idItem').val();
         let  quant =  $('#vendaQuant').val();
         let  desc =   $('#descontoVenda').val();
@@ -87,9 +88,9 @@ $(function(){
             carrinhoProdutos.splice(produtoExisteCarinho,1);
         }
       
-    
         carrinhoProdutos.push(itemSelecionado)
           tebaleCarrinho()
+          limparCampos()
     })
     
     
