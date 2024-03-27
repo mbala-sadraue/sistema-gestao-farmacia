@@ -90,15 +90,6 @@ $(function(){
     
         carrinhoProdutos.push(itemSelecionado)
           tebaleCarrinho()
-
-          //LIMPAR CAMPOS 
-            $('#idItem').val('');
-            $('#produtoname').val('');
-            $('#preco').val('')
-            $('#idItem').val('');
-            $('#vendaQuant').val(0);
-            $('#descontoVenda').val(0);
-            itemSelecionado = undefined
     })
     
     
@@ -143,7 +134,18 @@ function tebaleCarrinho(){
     $('#bodyCarrinho').html(tabody);
 }
 
+// LIMPAR TODOS CAMPOS
+function limparCampos(){
 
+     //LIMPAR CAMPOS 
+     $('#idItem').val('');
+     $('#produtoname').val('');
+     $('#preco').val('')
+     $('#idItem').val('');
+     $('#vendaQuant').val(0);
+     $('#descontoVenda').val(0);
+     itemSelecionado = undefined
+}
 
 // Vue.component('tabela-carrinho',{
 
