@@ -65,13 +65,21 @@ $(function(){
         $('#resultSearchProduto').html('')
     });
 
+
+    // AÇÃO DE BOTÂO  QUE ADICIONAR PRODUTO NO CARRINHO
     $('#btnAdcionarProdutoCarrinho').click(function(){
         let idItem =  $('#idItem').val();
+        let  quant =  $('#vendaQuant').val();
+        let  desc =   $('#descontoVenda').val();
+
         if(itemSelecionado == undefined)
             return false;
+        if(quant  <= 0  || desc < 0 )
+            return false
 
-        itemSelecionado.quantiVenda = $('#vendaQuant').val()
-        itemSelecionado.descontoVenda = $('#descontoVenda').val()
+
+        itemSelecionado.quantiVenda = quant
+        itemSelecionado.descontoVenda = desc;
         
       
         let produtoExisteCarinho = carrinhoProdutos.findIndex((item) => item.id == idItem)
