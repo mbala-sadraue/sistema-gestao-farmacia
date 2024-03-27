@@ -104,12 +104,16 @@ $(function(){
     
 })
 
+// MEETODO RESPONSAVEL POR LISTAR OS  
+// PRODUTOS DE CARRINHO NA TABELA
 function tebaleCarrinho(){
 
-    let tabody = '';
-    let index = 1;
+    let tabody  = '';
+    let index   = 1;
+    let totalBruto   = 0;
     for(let itemCarrinho of carrinhoProdutos){
         let subTotal = itemCarrinho.quantiVenda * itemCarrinho.precoVenda;
+        totalBruto += subTotal;
      let tr = `
         <tr>
             <td>${index}</td>
@@ -135,6 +139,7 @@ function tebaleCarrinho(){
      tabody += tr;
     }
     
+    $('#valorBruto').text(totalBruto);
     $('#bodyCarrinho').html(tabody);
 }
 

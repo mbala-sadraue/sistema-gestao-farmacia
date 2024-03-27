@@ -33,19 +33,19 @@
         <div class="col-md-4">
           <div class="box-info py-3">
             <h6>Total Bruto</h6>
-            <h3>7000,00</h3>
+            <h3 id="valorBruto">0,00</h3>
           </div>
         </div>
         <div class="col-md-4">
           <div class="box-info bg-azul py-3">
             <h6>Desconto</h6>
-            <h3>7000,00</h3>
+            <h3 id="valorDesconto">0,00</h3>
           </div>
         </div>
         <div class="col-md-4">
           <div class="box-info bg-verde py-3">
             <h6>Total</h6>
-            <h3>7000,00</h3>
+            <h3 id="valorTotal">0,00</h3>
           </div>
         </div>
       </div>
